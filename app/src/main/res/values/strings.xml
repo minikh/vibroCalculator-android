@@ -8,4 +8,10 @@
     <string name="action_settings">Settings</string>
     <string name="freqHz">Частота, Гц</string>
     <string name="freqCpm">Частота, Об/мин</string>
+
+    <string-array name="edIzmList">
+        <item>СКЗ</item>
+        <item>Пик</item>
+        <item>Размах</item>
+    </string-array>
 </resources>

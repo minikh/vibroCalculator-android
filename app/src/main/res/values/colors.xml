@@ -5,5 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorFreq">#5e595b</color>
     <color name="colorDb">#823dac</color>
+    <color name="colorAcceleration">#476146</color>
+    <color name="colorVelocity">#919048</color>
+    <color name="colorDisplacement">#58dc23</color>
     <color name="colorWhite">#ffffff</color>
 </resources>
