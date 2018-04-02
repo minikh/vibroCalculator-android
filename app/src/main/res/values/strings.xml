@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Vibrocalc</string>
+    <string name="app_name_full">Виброкалькулятор</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
     <string name="freqHz">Частота, Гц</string>
+    <string name="freqCpm">Частота, Об/мин</string>
 </resources>
