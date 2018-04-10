@@ -16,7 +16,7 @@
     >
         <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:columnCount="3" android:padding="3dp" android:layout_margin="2dp"
                 tools:layout_editor_absoluteY="5dp" tools:layout_editor_absoluteX="5dp"
                 tools:ignore="MissingConstraints">
@@ -43,7 +43,10 @@
                         android:text="@string/freqHz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textFreqHz" android:textColor="@color/colorWhite"/>
+                        android:id="@+id/textFreqHz" android:textColor="@color/colorWhite"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                />
             </LinearLayout>
             <LinearLayout
                     android:layout_column="0"
@@ -68,7 +71,10 @@
                         android:text="@string/freqCpm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textFreq" android:textColor="@color/colorWhite"/>
+                        android:id="@+id/textFreq" android:textColor="@color/colorWhite"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                />
             </LinearLayout>
 
             <LinearLayout
@@ -94,7 +100,11 @@
                         android:text="@string/aDb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textAdb" android:textColor="@color/colorWhite"/>
+                        android:id="@+id/textAdb"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                />
             </LinearLayout>
             <LinearLayout
                     android:layout_column="0"
@@ -119,7 +129,11 @@
                         android:text="@string/vDbMmSec"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textVdbMm" android:textColor="@color/colorWhite"/>
+                        android:id="@+id/textVdbMm"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                />
             </LinearLayout>
             <LinearLayout
                     android:layout_column="0"
@@ -144,7 +158,11 @@
                         android:text="@string/vDbMSec"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textVdbM" android:textColor="@color/colorWhite"/>
+                        android:id="@+id/textVdbM"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                />
             </LinearLayout>
 
             <LinearLayout
@@ -153,31 +171,42 @@
                     android:layout_rowSpan="2"
                     android:background="@color/colorAcceleration"
 
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp" android:layout_margin="1dp" android:layout_marginTop="10dp">
 
-                <EditText
-                        android:layout_weight="0"
-                        android:background="@color/colorWhite"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:ems="10"
-                        android:id="@+id/editAccelerationG"
-                        android:text="0.0"/>
-                <Spinner
-                        android:layout_width="0dp"
-                        android:entries="@array/edIzmList"
-                        android:layout_height="wrap_content" android:id="@+id/spinnerG"
-                        android:layout_weight="1"/>
                 <TextView
                         android:layout_weight="0"
                         android:text="@string/AccelerationG"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textAccelerationG" android:textColor="@color/colorWhite"/>
+
+                <LinearLayout
+                        android:weightSum="100"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                >
+
+                    <EditText
+                            android:background="@color/colorWhite"
+                            android:layout_width="0dp"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/editAccelerationG"
+                            android:text="0.0"/>
+                    <Spinner
+                            android:layout_width="0dp"
+                            android:layout_weight="50"
+                            android:entries="@array/edIzmList"
+                            android:layout_height="wrap_content" android:id="@+id/spinnerG"
+                    />
+
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                     android:layout_column="0"
@@ -185,29 +214,39 @@
                     android:layout_rowSpan="2"
                     android:background="@color/colorAcceleration"
 
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp" android:layout_margin="1dp">
 
-                <EditText
-                        android:background="@color/colorWhite"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:ems="10"
-                        android:id="@+id/editAccelerationM"
-                        android:text="0.0"/>
-                <Spinner
-                        android:layout_width="0dp"
-                        android:entries="@array/edIzmList"
-                        android:layout_height="wrap_content" android:id="@+id/spinnerAccelerationM"
-                        android:layout_weight="1"/>
                 <TextView
                         android:text="@string/AccelerationMSec2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textAccelerationM" android:textColor="@color/colorWhite"/>
+                <LinearLayout
+                        android:weightSum="100"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                >
+                    <EditText
+                            android:background="@color/colorWhite"
+                            android:layout_width="0dp"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/editAccelerationM"
+                            android:text="0.0"/>
+                    <Spinner
+                            android:layout_width="0dp"
+                            android:layout_weight="50"
+                            android:entries="@array/edIzmList"
+                            android:layout_height="wrap_content" android:id="@+id/spinnerAccelerationM"
+                    />
+
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                     android:layout_column="0"
@@ -215,29 +254,38 @@
                     android:layout_rowSpan="2"
                     android:background="@color/colorAcceleration"
 
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp" android:layout_margin="1dp">
-
-                <EditText
-                        android:background="@color/colorWhite"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:ems="10"
-                        android:id="@+id/editAccelerationMm"
-                        android:text="0.0"/>
-                <Spinner
-                        android:layout_width="0dp"
-                        android:entries="@array/edIzmList"
-                        android:layout_height="wrap_content" android:id="@+id/spinnerAccelerationMm"
-                        android:layout_weight="1"/>
                 <TextView
                         android:text="@string/AccelerationMmSec2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textAccelerationMm" android:textColor="@color/colorWhite"/>
+                <LinearLayout
+                        android:weightSum="100"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                >
+                    <EditText
+                            android:background="@color/colorWhite"
+                            android:layout_width="0dp"
+                            android:layout_weight="50"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/editAccelerationMm"
+                            android:text="0.0"/>
+                    <Spinner
+                            android:layout_width="0dp"
+                            android:layout_weight="50"
+                            android:entries="@array/edIzmList"
+                            android:layout_height="wrap_content" android:id="@+id/spinnerAccelerationMm"
+                    />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
