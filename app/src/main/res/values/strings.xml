@@ -6,25 +6,26 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="freqHz">Частота, Гц</string>
-    <string name="freqCpm">Частота, об/мин</string>
+
+    <string name="freqHz">Frequency [Hz]</string>
+    <string name="freqCpm">Frequency [cpm]</string>
 
     <string name="aDb">AdB re 1 micro g</string>
     <string name="vDbMmSec">VdB re 1x10e-6 мм/сек</string>
     <string name="vDbMSec">VdB re 1x10e-8 м/с</string>
 
-    <string name="AccelerationG">Виброускорение, g</string>
-    <string name="AccelerationMSec2">Виброускорение, м/с2</string>
-    <string name="AccelerationMmSec2">Виброускорение, мм/с2</string>
+    <string name="AccelerationG">Acceleration, g</string>
+    <string name="AccelerationMSec2">Acceleration, ft/sec2</string>
+    <string name="AccelerationMmSec2">Acceleration, inch/sec2</string>
 
-    <string name="velocityMSec">Виброскорость, м/с</string>
-    <string name="velocityMmSec">Виброскорость, мм/с</string>
+    <string name="velocityMSec">Velocity, ft/sec</string>
+    <string name="velocityMmSec">Velocity, inch/sec</string>
 
-    <string name="displacementM">Виброперемещение, м</string>
-    <string name="displacementMm">Виброперемещение, мм</string>
+    <string name="displacementM">Displacement, inch</string>
+    <string name="displacementMm">Displacement, mils</string>
 
-    <string name="temperatureC">Температура, C</string>
-    <string name="temperatureF">Температура, F</string>
+    <string name="temperatureC">Temperature, C</string>
+    <string name="temperatureF">Temperature, F</string>
 
     <string-array name="edIzmList">
         <item>СКЗ</item>

@@ -14,12 +14,12 @@
         android:gravity="bottom">
 
     <ImageView
-            android:layout_width="293dp"
-            android:layout_height="107dp"
+            android:layout_width="205dp"
+            android:layout_height="81dp"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             app:srcCompat="@mipmap/logo"
-            android:id="@+id/imageView" android:scaleType="centerCrop"
-            android:adjustViewBounds="true" android:cropToPadding="true"/>
+            android:id="@+id/imageView" android:scaleType="center"
+            android:adjustViewBounds="true" android:cropToPadding="false"/>
     <Switch
             android:text="English/Metric"
             android:layout_width="match_parent"
