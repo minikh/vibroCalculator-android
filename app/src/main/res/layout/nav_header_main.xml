@@ -21,8 +21,13 @@
             android:id="@+id/imageView" android:scaleType="center"
             android:adjustViewBounds="true" android:cropToPadding="false"/>
     <Switch
-            android:text="English/Metric"
+            android:id="@+id/switchMetricSystem"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/switchMetricSystem"/>
+            android:layout_height="wrap_content"
+            android:textOff="Metric"
+            android:textOn="English"
+            android:showText="true"
+            android:splitTrack="false"
+            android:text="Система измерения"/>
 
 </LinearLayout>
