@@ -23,6 +23,9 @@
     <string name="displacementM">Виброперемещение, м</string>
     <string name="displacementMm">Виброперемещение, мм</string>
 
+    <string name="temperatureC">Температура, C</string>
+    <string name="temperatureF">Температура, F</string>
+
     <string-array name="edIzmList">
         <item>СКЗ</item>
         <item>Пик</item>

@@ -8,5 +8,6 @@
     <color name="colorAcceleration">#476146</color>
     <color name="colorVelocity">#919048</color>
     <color name="colorDisplacement">#58dc23</color>
+    <color name="colorTemperature">#dc3223</color>
     <color name="colorWhite">#ffffff</color>
 </resources>
