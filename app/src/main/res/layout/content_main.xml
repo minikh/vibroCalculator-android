@@ -9,344 +9,359 @@
         tools:showIn="@layout/app_bar_main"
         tools:context="ru.vmsystems.vibrocalc.MainActivity">
 
-    <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:columnCount="3" android:padding="3dp" android:layout_margin="2dp"
-            tools:layout_editor_absoluteY="5dp" tools:layout_editor_absoluteX="5dp" tools:ignore="MissingConstraints">
-
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorFreq"
-                android:orientation="horizontal"
+    <ScrollView
+            android:id="@+id/myscroll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+    >
+        <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp">
+                android:layout_height="match_parent"
+                android:columnCount="3" android:padding="3dp" android:layout_margin="2dp"
+                tools:layout_editor_absoluteY="5dp" tools:layout_editor_absoluteX="5dp"
+                tools:ignore="MissingConstraints">
 
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorFreq"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editFreqHz"
-                    android:text="0.0"/>
-            <TextView
-                    android:text="@string/freqHz"
-                    android:layout_width="wrap_content"
+                    android:padding="5dp" android:layout_margin="1dp">
+
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editFreqHz"
+                        android:text="0.0"/>
+                <TextView
+                        android:text="@string/freqHz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textFreqHz" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorFreq"
+
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textFreqHz" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorFreq"
+                    android:padding="5dp" android:layout_margin="1dp">
 
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp">
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editFreqCpm"
+                        android:text="0.0"/>
+                <TextView
+                        android:text="@string/freqCpm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textFreq" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
 
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorDb"
+
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editFreqCpm"
-                    android:text="0.0"/>
-            <TextView
-                    android:text="@string/freqCpm"
-                    android:layout_width="wrap_content"
+                    android:padding="5dp" android:layout_margin="1dp" android:layout_marginTop="10dp">
+
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editAdb"
+                        android:text="0.0"/>
+                <TextView
+                        android:text="@string/aDb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textAdb" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorDb"
+
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textFreq" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
+                    android:padding="5dp" android:layout_margin="1dp">
 
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorDb"
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editVdbMm"
+                        android:text="0.0"/>
+                <TextView
+                        android:text="@string/vDbMmSec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textVdbMm" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorDb"
 
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp" android:layout_marginTop="10dp">
-
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editAdb"
-                    android:text="0.0"/>
-            <TextView
-                    android:text="@string/aDb"
-                    android:layout_width="wrap_content"
+                    android:padding="5dp" android:layout_margin="1dp">
+
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editVdbM"
+                        android:text="0.0"/>
+                <TextView
+                        android:text="@string/vDbMSec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textVdbM" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorAcceleration"
+
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textAdb" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorDb"
+                    android:padding="5dp" android:layout_margin="1dp" android:layout_marginTop="10dp">
 
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp">
+                <EditText
+                        android:layout_weight="0"
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editAccelerationG"
+                        android:text="0.0"/>
+                <Spinner
+                        android:layout_width="0dp"
+                        android:entries="@array/edIzmList"
+                        android:layout_height="wrap_content" android:id="@+id/spinnerG"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_weight="0"
+                        android:text="@string/AccelerationG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textAccelerationG" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorAcceleration"
 
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editVdbMm"
-                    android:text="0.0"/>
-            <TextView
-                    android:text="@string/vDbMmSec"
-                    android:layout_width="wrap_content"
+                    android:padding="5dp" android:layout_margin="1dp">
+
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editAccelerationM"
+                        android:text="0.0"/>
+                <Spinner
+                        android:layout_width="0dp"
+                        android:entries="@array/edIzmList"
+                        android:layout_height="wrap_content" android:id="@+id/spinnerAccelerationM"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:text="@string/AccelerationMSec2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textAccelerationM" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorAcceleration"
+
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textVdbMm" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorDb"
+                    android:padding="5dp" android:layout_margin="1dp">
 
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp">
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editAccelerationMm"
+                        android:text="0.0"/>
+                <Spinner
+                        android:layout_width="0dp"
+                        android:entries="@array/edIzmList"
+                        android:layout_height="wrap_content" android:id="@+id/spinnerAccelerationMm"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:text="@string/AccelerationMmSec2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textAccelerationMm" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
 
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorVelocity"
+
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editVdbM"
-                    android:text="0.0"/>
-            <TextView
-                    android:text="@string/vDbMSec"
-                    android:layout_width="wrap_content"
+                    android:padding="5dp" android:layout_margin="1dp" android:layout_marginTop="10dp">
+
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editVelocityM"
+                        android:text="0.0"/>
+                <Spinner
+                        android:layout_width="0dp"
+                        android:entries="@array/edIzmList"
+                        android:layout_height="wrap_content" android:id="@+id/spinnerVelocityM"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:text="@string/velocityMSec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textVelocityM" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorVelocity"
+
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textVdbM" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
+                    android:padding="5dp" android:layout_margin="1dp">
 
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorAcceleration"
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editVelocityMm"
+                        android:text="0.0"/>
+                <Spinner
+                        android:layout_width="0dp"
+                        android:entries="@array/edIzmList"
+                        android:layout_height="wrap_content" android:id="@+id/spinnerVelocityMm"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:text="@string/velocityMmSec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textVelocityMm" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
 
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp" android:layout_marginTop="10dp">
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorDisplacement"
 
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editAccelerationG"
-                    android:text="0.0"/>
-            <Spinner
-                    android:layout_width="0dp"
-                    android:entries="@array/edIzmList"
-                    android:layout_height="wrap_content" android:id="@+id/spinnerG" android:layout_weight="1"/>
-            <TextView
-                    android:text="@string/AccelerationG"
-                    android:layout_width="wrap_content"
+                    android:padding="5dp" android:layout_margin="1dp" android:layout_marginTop="10dp">
+
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editDisplacementM"
+                        android:text="0.0"/>
+                <Spinner
+                        android:layout_width="0dp"
+                        android:entries="@array/edIzmList"
+                        android:layout_height="wrap_content" android:id="@+id/spinnerDisplacementM"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:text="@string/displacementM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textDisplacementM" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_column="0"
+                    android:layout_columnSpan="3"
+                    android:layout_rowSpan="2"
+                    android:background="@color/colorDisplacement"
+
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textAccelerationG" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorAcceleration"
+                    android:padding="5dp" android:layout_margin="1dp">
 
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp">
-
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editAccelerationM"
-                    android:text="0.0"/>
-            <Spinner
-                    android:layout_width="0dp"
-                    android:entries="@array/edIzmList"
-                    android:layout_height="wrap_content" android:id="@+id/spinnerAccelerationM" android:layout_weight="1"/>
-            <TextView
-                    android:text="@string/AccelerationMSec2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textAccelerationM" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorAcceleration"
-
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp">
-
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editAccelerationMm"
-                    android:text="0.0"/>
-            <Spinner
-                    android:layout_width="0dp"
-                    android:entries="@array/edIzmList"
-                    android:layout_height="wrap_content" android:id="@+id/spinnerAccelerationMm" android:layout_weight="1"/>
-            <TextView
-                    android:text="@string/AccelerationMmSec2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textAccelerationMm" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorVelocity"
-
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp" android:layout_marginTop="10dp">
-
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editVelocityM"
-                    android:text="0.0"/>
-            <Spinner
-                    android:layout_width="0dp"
-                    android:entries="@array/edIzmList"
-                    android:layout_height="wrap_content" android:id="@+id/spinnerVelocityM" android:layout_weight="1"/>
-            <TextView
-                    android:text="@string/velocityMSec"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textVelocityM" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorVelocity"
-
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp">
-
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editVelocityMm"
-                    android:text="0.0"/>
-            <Spinner
-                    android:layout_width="0dp"
-                    android:entries="@array/edIzmList"
-                    android:layout_height="wrap_content" android:id="@+id/spinnerVelocityMm" android:layout_weight="1"/>
-            <TextView
-                    android:text="@string/velocityMmSec"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textVelocityMm" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorDisplacement"
-
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp" android:layout_marginTop="10dp">
-
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editDisplacementM"
-                    android:text="0.0"/>
-            <Spinner
-                    android:layout_width="0dp"
-                    android:entries="@array/edIzmList"
-                    android:layout_height="wrap_content" android:id="@+id/spinnerDisplacementM" android:layout_weight="1"/>
-            <TextView
-                    android:text="@string/displacementM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textDisplacementM" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-        <LinearLayout
-                android:layout_column="0"
-                android:layout_columnSpan="3"
-                android:layout_rowSpan="2"
-                android:background="@color/colorDisplacement"
-
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" android:layout_margin="1dp">
-
-            <EditText
-                    android:background="@color/colorWhite"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/editDisplacementMm"
-                    android:text="0.0"/>
-            <Spinner
-                    android:layout_width="0dp"
-                    android:entries="@array/edIzmList"
-                    android:layout_height="wrap_content" android:id="@+id/spinnerDisplacementMm" android:layout_weight="1"/>
-            <TextView
-                    android:text="@string/displacementMm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textDisplacementMm" android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-
-    </GridLayout>
+                <EditText
+                        android:background="@color/colorWhite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/editDisplacementMm"
+                        android:text="0.0"/>
+                <Spinner
+                        android:layout_width="0dp"
+                        android:entries="@array/edIzmList"
+                        android:layout_height="wrap_content" android:id="@+id/spinnerDisplacementMm"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:text="@string/displacementMm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textDisplacementMm" android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+        </GridLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
