@@ -19,7 +19,7 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-        CompoundButton.OnCheckedChangeListener{
+        CompoundButton.OnCheckedChangeListener {
 
     private var english: ArrayAdapter<String>? = null
     private var metric: ArrayAdapter<String>? = null
@@ -60,13 +60,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        var switch = nav_view.getHeaderView(0).findViewById<Switch>(R.id.switchMetricSystem)
-        if (switch != null) {
-            switch.setOnCheckedChangeListener(this)
-        }
+//        val switch = findViewById<Switch>(R.id.switchMetricSystem)
+        val switch = nav_view.getHeaderView(0).findViewById<Switch>(R.id.switchMetricSystem)
+        switch.setOnCheckedChangeListener(this)
 
-        english = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, EdIzm.getEnglishList())
-        metric = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, EdIzm.getMetricList())
+        english = ArrayAdapter(this, android.R.layout.simple_spinner_item, EdIzm.getEnglishList())
+        metric = ArrayAdapter(this, android.R.layout.simple_spinner_item, EdIzm.getMetricList())
     }
 
     override fun onBackPressed() {
@@ -87,9 +86,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.action_settings -> true
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -128,8 +127,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (isChecked) {
             conf.locale = Locale("en")
             setEnglish()
-        }
-        else {
+        } else {
             conf.locale = Locale("ru")
             setMetric()
         }
@@ -149,7 +147,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         textDisplacementMm.text = getString(R.string.displacementMm)
         textTemperatureC.text = getString(R.string.temperatureC)
         textTemperatureF.text = getString(R.string.temperatureF)
-
-
     }
 }
