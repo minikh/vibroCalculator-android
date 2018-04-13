@@ -38,7 +38,8 @@
                         android:inputType="numberDecimal"
                         android:ems="10"
                         android:id="@+id/editFreqHz"
-                        android:text="0.0"/>
+                        android:selectAllOnFocus="true"
+                        android:text="@string/defaultValue"/>
                 <TextView
                         android:text="@string/freqHz"
                         android:layout_width="wrap_content"
@@ -66,7 +67,8 @@
                         android:inputType="numberDecimal"
                         android:ems="10"
                         android:id="@+id/editFreqCpm"
-                        android:text="0.0"/>
+                        android:selectAllOnFocus="true"
+                        android:text="@string/defaultValue"/>
                 <TextView
                         android:text="@string/freqCpm"
                         android:layout_width="wrap_content"
@@ -95,7 +97,8 @@
                         android:inputType="numberDecimal"
                         android:ems="10"
                         android:id="@+id/editAdb"
-                        android:text="0.0"/>
+                        android:selectAllOnFocus="true"
+                        android:text="@string/defaultValue"/>
                 <TextView
                         android:text="@string/aDb"
                         android:layout_width="wrap_content"
@@ -124,7 +127,8 @@
                         android:inputType="numberDecimal"
                         android:ems="10"
                         android:id="@+id/editVdbMm"
-                        android:text="0.0"/>
+                        android:selectAllOnFocus="true"
+                        android:text="@string/defaultValue"/>
                 <TextView
                         android:text="@string/vDbMmSec"
                         android:layout_width="wrap_content"
@@ -153,7 +157,8 @@
                         android:inputType="numberDecimal"
                         android:ems="10"
                         android:id="@+id/editVdbM"
-                        android:text="0.0"/>
+                        android:selectAllOnFocus="true"
+                        android:text="@string/defaultValue"/>
                 <TextView
                         android:text="@string/vDbMSec"
                         android:layout_width="wrap_content"
@@ -198,7 +203,8 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/editAccelerationG"
-                            android:text="0.0"/>
+                            android:selectAllOnFocus="true"
+                            android:text="@string/defaultValue"/>
                     <Spinner
                             android:layout_width="0dp"
                             android:layout_weight="50"
@@ -238,7 +244,8 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/editAccelerationM"
-                            android:text="0.0"/>
+                            android:selectAllOnFocus="true"
+                            android:text="@string/defaultValue"/>
                     <Spinner
                             android:layout_width="0dp"
                             android:layout_weight="50"
@@ -277,7 +284,8 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/editAccelerationMm"
-                            android:text="0.0"/>
+                            android:selectAllOnFocus="true"
+                            android:text="@string/defaultValue"/>
                     <Spinner
                             android:layout_width="0dp"
                             android:layout_weight="50"
@@ -318,7 +326,8 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/editVelocityM"
-                            android:text="0.0"/>
+                            android:selectAllOnFocus="true"
+                            android:text="@string/defaultValue"/>
                     <Spinner
                             android:layout_width="0dp"
                             android:layout_weight="50"
@@ -357,7 +366,8 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/editVelocityMm"
-                            android:text="0.0"/>
+                            android:selectAllOnFocus="true"
+                            android:text="@string/defaultValue"/>
                     <Spinner
                             android:layout_width="0dp"
                             android:layout_weight="50"
@@ -397,7 +407,8 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/editDisplacementM"
-                            android:text="0.0"/>
+                            android:selectAllOnFocus="true"
+                            android:text="@string/defaultValue"/>
                     <Spinner
                             android:layout_width="0dp"
                             android:layout_weight="50"
@@ -436,7 +447,8 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/editDisplacementMm"
-                            android:text="0.0"/>
+                            android:selectAllOnFocus="true"
+                            android:text="@string/defaultValue"/>
                     <Spinner
                             android:layout_width="0dp"
                             android:layout_weight="50"
@@ -464,7 +476,8 @@
                         android:inputType="numberDecimal"
                         android:ems="10"
                         android:id="@+id/editTemperatureC"
-                        android:text="0.0"/>
+                        android:selectAllOnFocus="true"
+                        android:text="@string/defaultValue"/>
                 <TextView
                         android:text="@string/temperatureC"
                         android:layout_width="wrap_content"
@@ -493,7 +506,8 @@
                         android:inputType="numberDecimal"
                         android:ems="10"
                         android:id="@+id/editTemperatureF"
-                        android:text="0.0"/>
+                        android:selectAllOnFocus="true"
+                        android:text="@string/defaultValue"/>
                 <TextView
                         android:text="@string/temperatureF"
                         android:layout_width="wrap_content"

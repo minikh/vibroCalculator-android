@@ -27,6 +27,8 @@
     <string name="temperatureC">Temperature, C</string>
     <string name="temperatureF">Temperature, F</string>
 
+    <string name="defaultValue">0.0</string>
+
     <string-array name="edIzmList">
         <item>СКЗ</item>
         <item>Пик</item>

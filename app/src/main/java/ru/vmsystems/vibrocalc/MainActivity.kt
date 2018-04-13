@@ -2,7 +2,6 @@ package ru.vmsystems.vibrocalc
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -14,43 +13,36 @@ import android.widget.Switch
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import ru.vmsystems.vibrocalc.R.string.defaultValue
 import ru.vmsystems.vibrocalc.calc.EdIzm
+import ru.vmsystems.vibrocalc.calc.VibroCalcByAcceleration
+import ru.vmsystems.vibrocalc.calc.VibroCalcByDisplacement
+import ru.vmsystems.vibrocalc.calc.VibroCalcByVelocity
 import java.util.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
         CompoundButton.OnCheckedChangeListener {
 
+    private val vibroCalcByAcceleration = VibroCalcByAcceleration()
+    private val vibroCalcByVelocity = VibroCalcByVelocity()
+    private val vibroCalcByDisplacement = VibroCalcByDisplacement()
+
     private var english: ArrayAdapter<String>? = null
     private var metric: ArrayAdapter<String>? = null
-
-    private fun setEnglish() {
-        setEdIzm(english)
-    }
-
-    private fun setMetric() {
-        setEdIzm(metric)
-    }
-
-    private fun setEdIzm(values: ArrayAdapter<String>?) {
-        spinnerG.adapter = values
-        spinnerAccelerationM.adapter = values
-        spinnerAccelerationMm.adapter = values
-        spinnerVelocityM.adapter = values
-        spinnerVelocityMm.adapter = values
-        spinnerDisplacementM.adapter = values
-        spinnerDisplacementMm.adapter = values
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+//        fab.setOnClickListener { view ->
+            //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
+//        }
+
+        fab.setOnClickListener {
+            reset()
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -147,5 +139,42 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         textDisplacementMm.text = getString(R.string.displacementMm)
         textTemperatureC.text = getString(R.string.temperatureC)
         textTemperatureF.text = getString(R.string.temperatureF)
+    }
+
+    private fun reset() {
+        editFreqCpm.setText(defaultValue)
+        editFreqHz.setText(defaultValue)
+        editFreqCpm.setText(defaultValue)
+        editAdb.setText(defaultValue)
+        editVdbMm.setText(defaultValue)
+        editVdbM.setText(defaultValue)
+        editAccelerationG.setText(defaultValue)
+        editAccelerationM.setText(defaultValue)
+        editAccelerationMm.setText(defaultValue)
+        editVelocityM.setText(defaultValue)
+        editVelocityMm.setText(defaultValue)
+        editDisplacementM.setText(defaultValue)
+        editDisplacementMm.setText(defaultValue)
+        editTemperatureC.setText(defaultValue)
+        editTemperatureF.setText(defaultValue)
+    }
+
+    private fun setEnglish() {
+        setEdIzm(english)
+    }
+
+    private fun setMetric() {
+        setEdIzm(metric)
+    }
+
+    private fun setEdIzm(values: ArrayAdapter<String>?) {
+        spinnerG.adapter = values
+        spinnerAccelerationM.adapter = values
+        spinnerAccelerationMm.adapter = values
+        spinnerVelocityM.adapter = values
+        spinnerVelocityMm.adapter = values
+        spinnerDisplacementM.adapter = values
+        spinnerDisplacementMm.adapter = values
+
     }
 }
