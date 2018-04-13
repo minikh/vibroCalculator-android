@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import android.widget.Switch
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,25 +21,26 @@ import java.util.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
         CompoundButton.OnCheckedChangeListener{
 
-    private val english = EdIzm.getEnglish()
-    private val metric = EdIzm.getMetric()
+    private var english: ArrayAdapter<String>? = null
+    private var metric: ArrayAdapter<String>? = null
 
     private fun setEnglish() {
-        setEdIzm(english.values)
+        setEdIzm(english)
     }
 
     private fun setMetric() {
-        setEdIzm(metric.values)
+        setEdIzm(metric)
     }
 
-    private fun setEdIzm(values: Collection<String>) {
-        accelerationGSelectEdIzm.getItems().addAll(values)
-        accelerationMsec2SelectEdIzm.getItems().addAll(values)
-        accelerationMmSec2SelectEdIzm.getItems().addAll(values)
-        velocityMsecSelectEdIzm.getItems().addAll(values)
-        velocityMmSecSelectEdIzm.getItems().addAll(values)
-        displacementMSelectEdIzm.getItems().addAll(values)
-        displacementMmSelectEdIzm.getItems().addAll(values)
+    private fun setEdIzm(values: ArrayAdapter<String>?) {
+        spinnerG.adapter = values
+        spinnerAccelerationM.adapter = values
+        spinnerAccelerationMm.adapter = values
+        spinnerVelocityM.adapter = values
+        spinnerVelocityMm.adapter = values
+        spinnerDisplacementM.adapter = values
+        spinnerDisplacementMm.adapter = values
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +64,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (switch != null) {
             switch.setOnCheckedChangeListener(this)
         }
+
+        english = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, EdIzm.getEnglishList())
+        metric = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, EdIzm.getMetricList())
     }
 
     override fun onBackPressed() {
@@ -122,9 +127,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (isChecked) {
             conf.locale = Locale("en")
+            setEnglish()
         }
         else {
             conf.locale = Locale("ru")
+            setMetric()
         }
         res.updateConfiguration(conf, dm)
 
@@ -142,6 +149,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         textDisplacementMm.text = getString(R.string.displacementMm)
         textTemperatureC.text = getString(R.string.temperatureC)
         textTemperatureF.text = getString(R.string.temperatureF)
+
 
     }
 }

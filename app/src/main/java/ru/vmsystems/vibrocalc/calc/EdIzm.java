@@ -1,6 +1,8 @@
 package ru.vmsystems.vibrocalc.calc;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public enum EdIzm {
@@ -48,5 +50,21 @@ public enum EdIzm {
             map.put(edIzm.position, edIzm.metric);
         }
         return map;
+    }
+
+    public static List<String> getEnglishList() {
+        List<String> list = new ArrayList<>();
+        for (EdIzm edIzm : EdIzm.values()) {
+            list.add(edIzm.english);
+        }
+        return list;
+    }
+
+    public static List<String> getMetricList() {
+        List<String> list = new ArrayList<>();
+        for (EdIzm edIzm : EdIzm.values()) {
+            list.add(edIzm.metric);
+        }
+        return list;
     }
 }
