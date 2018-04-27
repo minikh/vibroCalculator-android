@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var metric: ArrayAdapter<String>? = null
 
     private var lastView : TextView? = null
-    private var fromMetricKoeff: Double? = 1.0
+    private var fromMetricKoeff: Double = 1.0
 
     private var accelerationGSelectEdIzmLastValue: EdIzm? = null
     private var accelerationMsec2SelectEdIzmLastValue: EdIzm? = null
@@ -40,6 +40,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var velocityMmSecSelectEdIzmLastValue: EdIzm? = null
     private var displacementMSelectEdIzmLastValue: EdIzm? = null
     private var displacementMmSelectEdIzmLastValue: EdIzm? = null
+
+    private var accelerationGSelectEdIzmIndex = 0
+    private var accelerationMsec2SelectEdIzmIndex = 0
+    private var accelerationMmSec2SelectEdIzmIndex = 0
+    private var velocityMsecSelectEdIzmIndex = 0
+    private var velocityMmSecSelectEdIzmIndex = 0
+    private var displacementMSelectEdIzmIndex = 2
+    private var displacementMmSelectEdIzmIndex = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -308,6 +316,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val dm = res.displayMetrics
         val conf = res.configuration
 
+        getSelectedEdIzm()
+
         if (isChecked) {
             conf.locale = Locale("en")
             setEnglish()
@@ -331,6 +341,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         textDisplacementMm.text = getString(R.string.displacementMm)
         textTemperatureC.text = getString(R.string.temperatureC)
         textTemperatureF.text = getString(R.string.temperatureF)
+
+        setSelectedEdIzm()
+
+        if (lastView != null){
+            lastView!!.onEditorAction(IME_ACTION_DONE)
+        }
     }
 
     private fun reset() {
@@ -359,10 +375,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setEnglish() {
+        if (lastView != null) {
+            var value: Double = java.lang.Double.valueOf(lastView!!.text.toString())
+            value *= fromMetricKoeff
+            lastView!!.text = value.toString()
+
+        }
+
+        vibroCalcByAcceleration.setMeasures(Measures.ENGLISH)
+        vibroCalcByVelocity.setMeasures(Measures.ENGLISH)
+        vibroCalcByDisplacement.setMeasures(Measures.ENGLISH)
+
         setEdIzm(english)
     }
 
     private fun setMetric() {
+        if (lastView != null) {
+            var value: Double = java.lang.Double.valueOf(lastView!!.text.toString())
+            value /= fromMetricKoeff
+            lastView!!.text = value.toString()
+        }
+
+        vibroCalcByAcceleration.setMeasures(Measures.METRIC)
+        vibroCalcByVelocity.setMeasures(Measures.METRIC)
+        vibroCalcByDisplacement.setMeasures(Measures.METRIC)
+
         setEdIzm(metric)
     }
 
@@ -374,6 +411,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         spinnerVelocityMm.adapter = values
         spinnerDisplacementM.adapter = values
         spinnerDisplacementMm.adapter = values
+    }
+
+    private fun getSelectedEdIzm() {
+        accelerationGSelectEdIzmIndex = spinnerAccelerationG.selectedItemPosition
+        accelerationMsec2SelectEdIzmIndex = spinnerAccelerationM.selectedItemPosition
+        accelerationMmSec2SelectEdIzmIndex = spinnerAccelerationMm.selectedItemPosition
+        velocityMsecSelectEdIzmIndex = spinnerVelocityM.selectedItemPosition
+        velocityMmSecSelectEdIzmIndex = spinnerVelocityMm.selectedItemPosition
+        displacementMSelectEdIzmIndex = spinnerDisplacementM.selectedItemPosition
+        displacementMmSelectEdIzmIndex = spinnerDisplacementMm.selectedItemPosition
+    }
+
+    private fun setSelectedEdIzm() {
+        spinnerAccelerationG.setSelection(accelerationGSelectEdIzmIndex)
+        spinnerAccelerationM.setSelection(accelerationGSelectEdIzmIndex)
+        spinnerAccelerationMm.setSelection(accelerationMsec2SelectEdIzmIndex)
+        spinnerVelocityM.setSelection(velocityMsecSelectEdIzmIndex)
+        spinnerVelocityMm.setSelection(velocityMmSecSelectEdIzmIndex)
+        spinnerDisplacementM.setSelection(displacementMSelectEdIzmIndex)
+        spinnerDisplacementMm.setSelection(displacementMmSelectEdIzmIndex)
     }
 
     private fun getFreq(): Double {
