@@ -400,14 +400,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val parameters = HashMap<Parameter, EdIzm>()
 
         parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerAccelerationG.selectedItem as String)
-        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerAccelerationM.selectedItem as String)
-        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerAccelerationMm.selectedItem as String)
+        parameters[Parameter.A_m_sec2] = EdIzm.getEdIzm(spinnerAccelerationM.selectedItem as String)
+        parameters[Parameter.A_mm_sec2] = EdIzm.getEdIzm(spinnerAccelerationMm.selectedItem as String)
 
-        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerVelocityM.selectedItem as String)
-        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerVelocityMm.selectedItem as String)
+        parameters[Parameter.V_m_sec] = EdIzm.getEdIzm(spinnerVelocityM.selectedItem as String)
+        parameters[Parameter.V_mm_sec] = EdIzm.getEdIzm(spinnerVelocityMm.selectedItem as String)
 
-        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerDisplacementM.selectedItem as String)
-        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerDisplacementMm.selectedItem as String)
+        parameters[Parameter.D_m] = EdIzm.getEdIzm(spinnerDisplacementM.selectedItem as String)
+        parameters[Parameter.D_mm] = EdIzm.getEdIzm(spinnerDisplacementMm.selectedItem as String)
 
         parameters[Parameter.A_db] = EdIzm.NONE
         parameters[Parameter.V_db_m_sec] = EdIzm.NONE
@@ -543,7 +543,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT
     }
 
-    fun onEditAccelerationG(view: TextView) {
+    private fun onEditAccelerationG(view: TextView) {
         if (checkFreqByZero()) return
 
         val value = java.lang.Double.parseDouble(view.text.toString())
@@ -560,7 +560,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fromMetricKoeff = MetricToEnglishKoeff.NONE
     }
 
-    fun onEditAccelerationMsec2(view: TextView) {
+    private fun onEditAccelerationMsec2(view: TextView) {
         val value = java.lang.Double.parseDouble(view.text.toString())
         val acceleration = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerAccelerationM.selectedItem as String),
@@ -575,7 +575,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT
     }
 
-    fun onEditAccelerationMmSec2(view: TextView) {
+    private fun onEditAccelerationMmSec2(view: TextView) {
         val value = java.lang.Double.parseDouble(view.text.toString())
         val acceleration = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerAccelerationMm.selectedItem as String),
@@ -590,7 +590,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fromMetricKoeff = MetricToEnglishKoeff.MM_TO_INCH
     }
 
-    fun onEditVelocityMsec(view: TextView) {
+    private fun onEditVelocityMsec(view: TextView) {
         val value = java.lang.Double.parseDouble(view.text.toString())
         val velocity = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerVelocityM.selectedItem as String),
@@ -605,7 +605,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT
     }
 
-    fun onEditVelocityMmSec(view: TextView) {
+    private fun onEditVelocityMmSec(view: TextView) {
         val value = java.lang.Double.parseDouble(view.text.toString())
         val velocity = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerVelocityMm.selectedItem as String),
@@ -724,7 +724,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun onChangeDisplacementMEdIzm() {
-        val text = editDisplacementMm.text.toString()
+        val text = editDisplacementM.text.toString()
 
         val edIzm = EdIzm.getEdIzm(spinnerDisplacementM.selectedItem as String)
 
