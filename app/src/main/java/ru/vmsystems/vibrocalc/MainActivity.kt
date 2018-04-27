@@ -139,6 +139,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
+        editDisplacementM.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditDisplacementM(view)
+                editDisplacementM.selectAll()
+                true
+            } else {
+                false
+            }
+        }
         editDisplacementMm.setOnEditorActionListener { view, actionId, event ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditDisplacementMm(view)
@@ -148,18 +157,56 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
+
+
+        spinnerAccelerationG.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                onChangeAccelerationGEdIzm()
+            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+            }
+        }
+        spinnerAccelerationM.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                onChangeAccelerationMsec2EdIzm()
+            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+            }
+        }
+        spinnerAccelerationMm.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                onChangeAccelerationMmSec2EdIzm()
+            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+            }
+        }
+        spinnerVelocityM.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                onChangeVelocityMsecEdIzm()
+            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+            }
+        }
+        spinnerVelocityMm.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                onChangeVelocityMmSecEdIzm()
+            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+            }
+        }
+        spinnerDisplacementM.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                onChangeDisplacementMEdIzm()
+            }
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+            }
+        }
         spinnerDisplacementMm.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-//                var text = (selectedItemView as AppCompatTextView).text.toString()
-//                var edIzm = EdIzm.valueOf(text)
                 onChangeDisplacementMmEdIzm()
             }
-
             override fun onNothingSelected(parentView: AdapterView<*>) {
-                // your code here
-                println()
             }
-
         }
 
     }
@@ -343,25 +390,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             editAccelerationG.setText(result.values[Parameter.A_g.name]!!.value.toString())
         }
 
-//        if (value.parameter !== Parameter.A_m_sec2) {
-//            editAccelerationM.setText(result.values[Parameter.A_m_sec2.name]!!.value.toString())
-//        }
-//
-//        if (value.parameter !== Parameter.A_mm_sec2) {
-//            editAccelerationMm.setText(result.values[Parameter.A_mm_sec2.name]!!.value.toString())
-//        }
-//
-//        if (value.parameter !== Parameter.V_m_sec) {
-//            editVelocityM.setText(result.values[Parameter.V_m_sec.name]!!.value.toString())
-//        }
-//
-//        if (value.parameter !== Parameter.V_mm_sec) {
-//            editVelocityMm.setText(result.values[Parameter.V_mm_sec.name]!!.value.toString())
-//        }
-//
-//        if (value.parameter !== Parameter.D_m) {
-//            editDisplacementM.setText(result.values[Parameter.D_m.name]!!.value.toString())
-//        }
+        if (value.parameter !== Parameter.A_m_sec2) {
+            editAccelerationM.setText(result.values[Parameter.A_m_sec2.name]!!.value.toString())
+        }
+
+        if (value.parameter !== Parameter.A_mm_sec2) {
+            editAccelerationMm.setText(result.values[Parameter.A_mm_sec2.name]!!.value.toString())
+        }
+
+        if (value.parameter !== Parameter.V_m_sec) {
+            editVelocityM.setText(result.values[Parameter.V_m_sec.name]!!.value.toString())
+        }
+
+        if (value.parameter !== Parameter.V_mm_sec) {
+            editVelocityMm.setText(result.values[Parameter.V_mm_sec.name]!!.value.toString())
+        }
+
+        if (value.parameter !== Parameter.D_m) {
+            editDisplacementM.setText(result.values[Parameter.D_m.name]!!.value.toString())
+        }
 
         if (value.parameter !== Parameter.D_mm) {
             editDisplacementMm.setText(result.values[Parameter.D_mm.name]!!.value.toString())
@@ -453,6 +500,200 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT
     }
 
+    fun onEditAccelerationG(view: TextView) {
+        if (checkFreqByZero()) return
+
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val acceleration = Value(value = value,
+                edIzm = EdIzm.getEdIzm(spinnerAccelerationG.selectedItem as String),
+                parameter = Parameter.A_g)
+
+        vibroCalcByAcceleration.setParameters(getSelectedParameters())
+        val result = vibroCalcByAcceleration.calculate(acceleration, getFreq())
+
+        applyResult(result, acceleration)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.NONE
+    }
+
+    fun onEditAccelerationMsec2(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val acceleration = Value(value = value,
+                edIzm = EdIzm.getEdIzm(spinnerAccelerationM.selectedItem as String),
+                parameter = Parameter.A_m_sec2)
+
+        vibroCalcByAcceleration.setParameters(getSelectedParameters())
+        val result = vibroCalcByAcceleration.calculate(acceleration, getFreq())
+
+        applyResult(result, acceleration)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT
+    }
+
+    fun onEditAccelerationMmSec2(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val acceleration = Value(value = value,
+                edIzm = EdIzm.getEdIzm(spinnerAccelerationMm.selectedItem as String),
+                parameter = Parameter.A_mm_sec2)
+
+        vibroCalcByAcceleration.setParameters(getSelectedParameters())
+        val result = vibroCalcByAcceleration.calculate(acceleration, getFreq())
+
+        applyResult(result, acceleration)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_INCH
+    }
+
+    fun onEditVelocityMsec(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val velocity = Value(value = value,
+                edIzm = EdIzm.getEdIzm(spinnerVelocityM.selectedItem as String),
+                parameter = Parameter.V_m_sec)
+
+        vibroCalcByVelocity.setParameters(getSelectedParameters())
+        val result = vibroCalcByVelocity.calculate(velocity, getFreq())
+
+        applyResult(result, velocity)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT
+    }
+
+    fun onEditVelocityMmSec(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val velocity = Value(value = value,
+                edIzm = EdIzm.getEdIzm(spinnerVelocityMm.selectedItem as String),
+                parameter = Parameter.V_mm_sec)
+
+        vibroCalcByVelocity.setParameters(getSelectedParameters())
+        val result = vibroCalcByVelocity.calculate(velocity, getFreq())
+
+        applyResult(result, velocity)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_INCH
+    }
+
+    private fun onEditDisplacementM(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val displacement = Value(value = value,
+                edIzm = EdIzm.getEdIzm(spinnerDisplacementM.selectedItem as String),
+                parameter = Parameter.D_m)
+
+        vibroCalcByDisplacement.setParameters(getSelectedParameters())
+        val result = vibroCalcByDisplacement.calculate(displacement, getFreq())
+
+        applyResult(result, displacement)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.M_TO_INCH
+    }
+
+
+    private fun onEditDisplacementMm(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val displacement = Value(value = value,
+                edIzm = EdIzm.getEdIzm(spinnerDisplacementMm.selectedItem as String),
+                parameter = Parameter.D_mm)
+
+        vibroCalcByDisplacement.setParameters(getSelectedParameters())
+        val result = vibroCalcByDisplacement.calculate(displacement, getFreq())
+
+        applyResult(result, displacement)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_MILS
+    }
+
+
+    //  --------
+    fun onChangeAccelerationGEdIzm() {
+        val text = editDisplacementMm.text.toString()
+
+        val edIzm = EdIzm.getEdIzm(spinnerAccelerationG.selectedItem as String)
+
+        val value = java.lang.Double.parseDouble(text)
+        val acceleration = Value(value = value,
+                edIzm = accelerationGSelectEdIzmLastValue,
+                parameter = Parameter.A_g)
+
+        editAccelerationG.setText(vibroCalcByAcceleration.recalculateValue(acceleration, edIzm))
+        accelerationGSelectEdIzmLastValue = edIzm
+    }
+
+    fun onChangeAccelerationMsec2EdIzm() {
+        val text = editDisplacementMm.text.toString()
+
+        val edIzm = EdIzm.getEdIzm(spinnerAccelerationM.selectedItem as String)
+
+        val value = java.lang.Double.parseDouble(text)
+        val acceleration = Value(value = value,
+                edIzm = accelerationMsec2SelectEdIzmLastValue,
+                parameter = Parameter.A_m_sec2)
+
+        editAccelerationM.setText(vibroCalcByAcceleration.recalculateValue(acceleration, edIzm))
+        accelerationMsec2SelectEdIzmLastValue = edIzm
+    }
+
+    fun onChangeAccelerationMmSec2EdIzm() {
+        val text = editDisplacementMm.text.toString()
+
+        val edIzm = EdIzm.getEdIzm(spinnerAccelerationMm.selectedItem as String)
+
+        val value = java.lang.Double.parseDouble(text)
+        val acceleration = Value(value = value,
+                edIzm = accelerationMmSec2SelectEdIzmLastValue,
+                parameter = Parameter.A_mm_sec2)
+
+        editAccelerationMm.setText(vibroCalcByAcceleration.recalculateValue(acceleration, edIzm))
+        accelerationMmSec2SelectEdIzmLastValue = edIzm
+    }
+
+    fun onChangeVelocityMsecEdIzm() {
+        val text = editDisplacementMm.text.toString()
+
+        val edIzm = EdIzm.getEdIzm(spinnerVelocityM.selectedItem as String)
+
+        val value = java.lang.Double.parseDouble(text)
+        val velocity = Value(value = value,
+                edIzm = velocityMsecSelectEdIzmLastValue,
+                parameter = Parameter.V_m_sec)
+
+        editVelocityMm.setText(vibroCalcByVelocity.recalculateValue(velocity, edIzm))
+        velocityMsecSelectEdIzmLastValue = edIzm
+    }
+
+    fun onChangeVelocityMmSecEdIzm() {
+        val text = editDisplacementMm.text.toString()
+
+        val edIzm = EdIzm.getEdIzm(spinnerVelocityMm.selectedItem as String)
+
+        val value = java.lang.Double.parseDouble(text)
+        val velocity = Value(value = value,
+                edIzm = velocityMmSecSelectEdIzmLastValue,
+                parameter = Parameter.V_mm_sec)
+
+        editVelocityMm.setText(vibroCalcByVelocity.recalculateValue(velocity, edIzm))
+        velocityMmSecSelectEdIzmLastValue = edIzm
+    }
+
+    fun onChangeDisplacementMEdIzm() {
+        val text = editDisplacementMm.text.toString()
+
+        val edIzm = EdIzm.getEdIzm(spinnerDisplacementM.selectedItem as String)
+
+        val value = java.lang.Double.parseDouble(text)
+        val displacement = Value(value = value,
+                edIzm = displacementMSelectEdIzmLastValue,
+                parameter = Parameter.D_mm)
+
+        editDisplacementM.setText(vibroCalcByDisplacement.recalculateValue(displacement, edIzm))
+        displacementMSelectEdIzmLastValue = edIzm
+    }
+
     fun onChangeDisplacementMmEdIzm() {
         val text = editDisplacementMm.text.toString()
 
@@ -466,20 +707,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         editDisplacementMm.setText(vibroCalcByDisplacement.recalculateValue(displacement, edIzm))
         displacementMmSelectEdIzmLastValue = edIzm
     }
-
-    private fun onEditDisplacementMm(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
-        val displacement = Value(value = value,
-                edIzm = EdIzm.getEdIzm(spinnerDisplacementM.selectedItem as String),
-                parameter = Parameter.D_mm)
-
-        vibroCalcByDisplacement.setParameters(getSelectedParameters())
-        val result = vibroCalcByDisplacement.calculate(displacement, getFreq())
-
-        applyResult(result, displacement)
-
-        lastView = view
-        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_MILS
-    }
-
 }
