@@ -78,6 +78,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
+        editFreqCpm.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditFreqCpm(view)
+                editFreqCpm.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+        editFreqHz.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditFreqHz(view)
+                editFreqHz.selectAll()
+                true
+            } else {
+                false
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -162,9 +180,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun reset() {
+        resetFreq()
+        resetResult()
+    }
+
+    private fun resetFreq() {
         editFreqCpm.setText(defaultValue)
         editFreqHz.setText(defaultValue)
-        editFreqCpm.setText(defaultValue)
+    }
+
+    private fun resetResult() {
         editAdb.setText(defaultValue)
         editVdbMm.setText(defaultValue)
         editVdbM.setText(defaultValue)
@@ -217,5 +242,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         editTemperatureC.setText((1.8 * temp + 32).toString())
+    }
+
+    fun onEditFreqHz(view: TextView) {
+        val freq = java.lang.Double.parseDouble(view.text.toString())
+
+        if (freq > 100000) {
+            AppAlert.showErrorAlert("Введите число от 0 до 100 000", view)
+            return
+        }
+
+        resetResult()
+        editFreqCpm.setText((freq * 60).toString())
+    }
+
+    fun onEditFreqCpm(view: TextView) {
+        val freq = java.lang.Double.parseDouble(view.text.toString())
+
+        if (freq > 6000000) {
+            AppAlert.showErrorAlert("Введите число от 0 до 6 000 000", view)
+            return
+        }
+
+        resetResult()
+        editFreqHz.setText((freq / 60).toString())
     }
 }
