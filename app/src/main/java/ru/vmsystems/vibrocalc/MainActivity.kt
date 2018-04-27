@@ -2,27 +2,22 @@ package ru.vmsystems.vibrocalc
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.AppCompatTextView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.view.inputmethod.EditorInfo.IME_ACTION_NEXT
 import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import ru.vmsystems.vibrocalc.R.string.defaultValue
 import ru.vmsystems.vibrocalc.calc.*
 import java.util.*
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
-
-
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
@@ -73,6 +68,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         english = ArrayAdapter(this, android.R.layout.simple_spinner_item, EdIzm.getEnglishList())
         metric = ArrayAdapter(this, android.R.layout.simple_spinner_item, EdIzm.getMetricList())
+
+        spinnerDisplacementM.setSelection(2)
+        spinnerDisplacementMm.setSelection(2)
 
         editTemperatureC.setOnEditorActionListener { view, actionId, event ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
