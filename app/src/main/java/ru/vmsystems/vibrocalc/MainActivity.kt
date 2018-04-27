@@ -137,8 +137,51 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-
-
+        editAccelerationG.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditAccelerationG(view)
+                editAccelerationG.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+        editAccelerationM.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditAccelerationMsec2(view)
+                editAccelerationM.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+        editAccelerationMm.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditAccelerationMmSec2(view)
+                editAccelerationMm.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+        editVelocityM.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditVelocityMsec(view)
+                editVelocityM.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+        editVelocityMm.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditVelocityMmSec(view)
+                editVelocityMm.selectAll()
+                true
+            } else {
+                false
+            }
+        }
         editDisplacementM.setOnEditorActionListener { view, actionId, event ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditDisplacementM(view)
