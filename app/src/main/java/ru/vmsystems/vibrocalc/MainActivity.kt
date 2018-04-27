@@ -2,14 +2,15 @@ package ru.vmsystems.vibrocalc
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
-import android.widget.CompoundButton
-import android.widget.Switch
+import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
+import android.view.inputmethod.EditorInfo.IME_ACTION_NEXT
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 //        fab.setOnClickListener { view ->
             //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
+//                    .setAction("AppAlert", null).show()
 //        }
 
         fab.setOnClickListener {
@@ -58,6 +59,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         english = ArrayAdapter(this, android.R.layout.simple_spinner_item, EdIzm.getEnglishList())
         metric = ArrayAdapter(this, android.R.layout.simple_spinner_item, EdIzm.getMetricList())
+
+        editTemperatureC.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditTemperatureC(view)
+                editTemperatureC.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+        editTemperatureF.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditTemperatureF(view)
+                editTemperatureF.selectAll()
+                true
+            } else {
+                false
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -175,6 +195,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         spinnerVelocityMm.adapter = values
         spinnerDisplacementM.adapter = values
         spinnerDisplacementMm.adapter = values
+    }
 
+    private fun onEditTemperatureC(view: TextView) {
+        val temp = java.lang.Double.parseDouble(view.text.toString())
+
+        if (temp < -273.15 || temp > 10000) {
+            AppAlert.showErrorAlert("Введите число от -273.15 до 10 000", view)
+            return
+        }
+
+        editTemperatureF.setText((1.8 * temp + 32).toString())
+    }
+
+    private fun onEditTemperatureF(view: TextView) {
+        val temp = java.lang.Double.parseDouble(view.text.toString())
+
+        if (temp < -459.67 || temp > 10000) {
+            AppAlert.showErrorAlert("Введите число от -459.67 до 10 000", view)
+            return
+        }
+
+        editTemperatureC.setText((1.8 * temp + 32).toString())
     }
 }
