@@ -51,29 +51,27 @@ public abstract class VibroCalc {
         return _2_PI * freq;
     }
 
-    Value prepareResult(EdIzm parameter, Double rmsValue, Value.ValueBuilder valueBuilder) {
-        Double result;
-        switch (parameter) {
+    Value prepareResult(EdIzm edIzm, Double rmsValue, Parameter parameter) {
+        Value result;
+        Double val;
+        switch (edIzm) {
             case RMS:
-                result = rmsValue;
-                valueBuilder
-                        .value(result)
-                        .edIzm(parameter);
+            case NONE:
+                result = new Value(rmsValue, edIzm, parameter);
                 break;
             case PEAK:
-                result = rmsValue * _SQRT_2;
-                valueBuilder
-                        .value(result)
-                        .edIzm(parameter);
+                val = rmsValue * _SQRT_2;
+                result = new Value(val, edIzm, parameter);
                 break;
             case PEAK_TO_PEAK:
-                result = rmsValue * _SQRT_2 * 2;
-                valueBuilder
-                        .value(result)
-                        .edIzm(parameter);
+                val = rmsValue * _SQRT_2 * 2;
+                result = new Value(val, edIzm, parameter);
                 break;
+            default:
+                throw new RuntimeException("Нет такогй единицы измерения " + edIzm.name());
+
         }
-        return valueBuilder.build();
+        return result;
     }
 
     public String recalculateValue(Value value, EdIzm currentEdIzm) {
@@ -81,14 +79,14 @@ public abstract class VibroCalc {
 
         Double rms = prepareValue(value);
 
-        Value.ValueBuilder valueBuilder = Value.builder()
-                .parameter(value.getParameter());
-        Value result = prepareResult(currentEdIzm, rms, valueBuilder);
+        Value result = prepareResult(currentEdIzm, rms, value.getParameter());
         return String.valueOf(result.getValue());
     }
 
     Double prepareValue(Value value) {
         Double rms = 0.0;
+        if (value.getEdIzm() == null) return rms;
+
         switch (value.getEdIzm()) {
             case RMS:
                 rms = value.getValue();

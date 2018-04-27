@@ -8,7 +8,8 @@ import java.util.Map;
 public enum EdIzm {
     RMS(1, "rms", "СКЗ"),
     PEAK(3, "pk", "Пик"),
-    PEAK_TO_PEAK(4, "pk-pk", "Размах");
+    PEAK_TO_PEAK(4, "pk-pk", "Размах"),
+    NONE(5, "no", "нет");
 
     private Integer position;
     private String english;
@@ -39,6 +40,7 @@ public enum EdIzm {
     public static Map<Integer, String> getEnglish() {
         Map<Integer, String> map = new HashMap<>();
         for (EdIzm edIzm : EdIzm.values()) {
+            if (edIzm == NONE) continue;
             map.put(edIzm.position, edIzm.english);
         }
         return map;
@@ -47,6 +49,7 @@ public enum EdIzm {
     public static Map<Integer, String> getMetric() {
         Map<Integer, String> map = new HashMap<>();
         for (EdIzm edIzm : EdIzm.values()) {
+            if (edIzm == NONE) continue;
             map.put(edIzm.position, edIzm.metric);
         }
         return map;
@@ -55,6 +58,7 @@ public enum EdIzm {
     public static List<String> getEnglishList() {
         List<String> list = new ArrayList<>();
         for (EdIzm edIzm : EdIzm.values()) {
+            if (edIzm == NONE) continue;
             list.add(edIzm.english);
         }
         return list;
@@ -63,6 +67,7 @@ public enum EdIzm {
     public static List<String> getMetricList() {
         List<String> list = new ArrayList<>();
         for (EdIzm edIzm : EdIzm.values()) {
+            if (edIzm == NONE) continue;
             list.add(edIzm.metric);
         }
         return list;

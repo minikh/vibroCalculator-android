@@ -60,14 +60,12 @@ public class VibroCalcByAcceleration extends VibroCalc {
             setParameters(null);
 
             if (result != null) {
-                Value.ValueBuilder valueBuilder = Value.builder()
-                        .parameter(parameter.getKey());
-                Value resultValue = prepareResult(parameter.getValue(), result, valueBuilder);
+                Value resultValue = prepareResult(parameter.getValue(), result, parameter.getKey());
                 valueMap.put(resultValue.getParameter().name(), resultValue);
             }
         }
 
-        return Result.builder().values(valueMap).build();
+        return new Result(valueMap);
     }
 
     private Double translationValue(Value value, Double rms) {

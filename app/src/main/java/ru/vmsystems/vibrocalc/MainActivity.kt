@@ -6,8 +6,10 @@ import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.AppCompatTextView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.view.inputmethod.EditorInfo.IME_ACTION_NEXT
 import android.widget.*
@@ -15,11 +17,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import ru.vmsystems.vibrocalc.R.string.defaultValue
-import ru.vmsystems.vibrocalc.calc.EdIzm
-import ru.vmsystems.vibrocalc.calc.VibroCalcByAcceleration
-import ru.vmsystems.vibrocalc.calc.VibroCalcByDisplacement
-import ru.vmsystems.vibrocalc.calc.VibroCalcByVelocity
+import ru.vmsystems.vibrocalc.calc.*
 import java.util.*
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+
+
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
@@ -31,6 +34,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private var english: ArrayAdapter<String>? = null
     private var metric: ArrayAdapter<String>? = null
+
+    private var lastView : TextView? = null
+    private var fromMetricKoeff: Double? = 1.0
+
+    private var accelerationGSelectEdIzmLastValue: EdIzm? = null
+    private var accelerationMsec2SelectEdIzmLastValue: EdIzm? = null
+    private var accelerationMmSec2SelectEdIzmLastValue: EdIzm? = null
+    private var velocityMsecSelectEdIzmLastValue: EdIzm? = null
+    private var velocityMmSecSelectEdIzmLastValue: EdIzm? = null
+    private var displacementMSelectEdIzmLastValue: EdIzm? = null
+    private var displacementMmSelectEdIzmLastValue: EdIzm? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,6 +110,58 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
+        editAdb.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditAdb(view)
+                editAdb.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+        editVdbM.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditVdbMsec(view)
+                editVdbM.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+        editVdbMm.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditVdbMmSec(view)
+                editVdbMm.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+
+
+        editDisplacementMm.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                onEditDisplacementMm(view)
+                editDisplacementMm.selectAll()
+                true
+            } else {
+                false
+            }
+        }
+        spinnerDisplacementMm.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+//                var text = (selectedItemView as AppCompatTextView).text.toString()
+//                var edIzm = EdIzm.valueOf(text)
+                onChangeDisplacementMmEdIzm()
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+                // your code here
+                println()
+            }
+
+        }
+
     }
 
     override fun onBackPressed() {
@@ -213,13 +279,93 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setEdIzm(values: ArrayAdapter<String>?) {
-        spinnerG.adapter = values
+        spinnerAccelerationG.adapter = values
         spinnerAccelerationM.adapter = values
         spinnerAccelerationMm.adapter = values
         spinnerVelocityM.adapter = values
         spinnerVelocityMm.adapter = values
         spinnerDisplacementM.adapter = values
         spinnerDisplacementMm.adapter = values
+    }
+
+    private fun getFreq(): Double {
+        val text = editFreqHz.text.toString()
+        return java.lang.Double.parseDouble(text)
+    }
+
+    private fun checkFreqByZero(): Boolean {
+        try {
+            val freqHz = java.lang.Double.parseDouble(editFreqHz.text.toString())
+            val freqCpm = java.lang.Double.parseDouble(editFreqCpm.text.toString())
+
+            if (freqCpm == 0.0 || freqHz == 0.0) return true
+        } catch (e: NumberFormatException) {
+            return true
+        }
+
+        return false
+    }
+
+    private fun getSelectedParameters(): Map<Parameter, EdIzm> {
+        val parameters = HashMap<Parameter, EdIzm>()
+
+        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerAccelerationG.selectedItem as String)
+        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerAccelerationM.selectedItem as String)
+        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerAccelerationMm.selectedItem as String)
+
+        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerVelocityM.selectedItem as String)
+        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerVelocityMm.selectedItem as String)
+
+        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerDisplacementM.selectedItem as String)
+        parameters[Parameter.A_g] = EdIzm.getEdIzm(spinnerDisplacementMm.selectedItem as String)
+
+        parameters[Parameter.A_db] = EdIzm.NONE
+        parameters[Parameter.V_db_m_sec] = EdIzm.NONE
+        parameters[Parameter.V_db_mm_sec] = EdIzm.NONE
+
+        return parameters
+    }
+
+    private fun applyResult(result: Result, value: Value) {
+        if (value.parameter !== Parameter.A_db) {
+            editAdb.setText(result.values[Parameter.A_db.name]!!.value.toString())
+        }
+
+        if (value.parameter !== Parameter.V_db_mm_sec) {
+            editVdbMm.setText(result.values[Parameter.V_db_mm_sec.name]!!.value.toString())
+        }
+
+        if (value.parameter !== Parameter.V_db_m_sec) {
+            editVdbM.setText(result.values[Parameter.V_db_m_sec.name]!!.value.toString())
+        }
+
+        if (value.parameter !== Parameter.A_g) {
+            editAccelerationG.setText(result.values[Parameter.A_g.name]!!.value.toString())
+        }
+
+//        if (value.parameter !== Parameter.A_m_sec2) {
+//            editAccelerationM.setText(result.values[Parameter.A_m_sec2.name]!!.value.toString())
+//        }
+//
+//        if (value.parameter !== Parameter.A_mm_sec2) {
+//            editAccelerationMm.setText(result.values[Parameter.A_mm_sec2.name]!!.value.toString())
+//        }
+//
+//        if (value.parameter !== Parameter.V_m_sec) {
+//            editVelocityM.setText(result.values[Parameter.V_m_sec.name]!!.value.toString())
+//        }
+//
+//        if (value.parameter !== Parameter.V_mm_sec) {
+//            editVelocityMm.setText(result.values[Parameter.V_mm_sec.name]!!.value.toString())
+//        }
+//
+//        if (value.parameter !== Parameter.D_m) {
+//            editDisplacementM.setText(result.values[Parameter.D_m.name]!!.value.toString())
+//        }
+
+        if (value.parameter !== Parameter.D_mm) {
+            editDisplacementMm.setText(result.values[Parameter.D_mm.name]!!.value.toString())
+        }
     }
 
     private fun onEditTemperatureC(view: TextView) {
@@ -244,7 +390,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         editTemperatureC.setText((1.8 * temp + 32).toString())
     }
 
-    fun onEditFreqHz(view: TextView) {
+    private fun onEditFreqHz(view: TextView) {
         val freq = java.lang.Double.parseDouble(view.text.toString())
 
         if (freq > 100000) {
@@ -256,7 +402,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         editFreqCpm.setText((freq * 60).toString())
     }
 
-    fun onEditFreqCpm(view: TextView) {
+    private fun onEditFreqCpm(view: TextView) {
         val freq = java.lang.Double.parseDouble(view.text.toString())
 
         if (freq > 6000000) {
@@ -267,4 +413,73 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         resetResult()
         editFreqHz.setText((freq / 60).toString())
     }
+
+    private fun onEditAdb(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val acceleration = Value(value = value, edIzm = EdIzm.NONE, parameter = Parameter.A_db)
+
+        vibroCalcByAcceleration.setParameters(getSelectedParameters())
+        val result = vibroCalcByAcceleration.calculate(acceleration, getFreq())
+
+        applyResult(result, acceleration)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.NONE
+    }
+
+    private fun onEditVdbMmSec(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val velocity = Value(value = value, edIzm = EdIzm.NONE, parameter = Parameter.V_db_mm_sec)
+
+        vibroCalcByVelocity.setParameters(getSelectedParameters())
+        val result = vibroCalcByVelocity.calculate(velocity, getFreq())
+
+        applyResult(result, velocity)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_INCH
+    }
+
+    private fun onEditVdbMsec(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val velocity = Value(value = value, edIzm = EdIzm.NONE, parameter = Parameter.V_db_m_sec)
+
+        vibroCalcByVelocity.setParameters(getSelectedParameters())
+        val result = vibroCalcByVelocity.calculate(velocity, getFreq())
+
+        applyResult(result, velocity)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT
+    }
+
+    fun onChangeDisplacementMmEdIzm() {
+        val text = editDisplacementMm.text.toString()
+
+        val edIzm = EdIzm.getEdIzm(spinnerDisplacementMm.selectedItem as String)
+
+        val value = java.lang.Double.parseDouble(text)
+        val displacement = Value(value = value,
+                edIzm = displacementMmSelectEdIzmLastValue,
+                parameter = Parameter.D_mm)
+
+        editDisplacementMm.setText(vibroCalcByDisplacement.recalculateValue(displacement, edIzm))
+        displacementMmSelectEdIzmLastValue = edIzm
+    }
+
+    private fun onEditDisplacementMm(view: TextView) {
+        val value = java.lang.Double.parseDouble(view.text.toString())
+        val displacement = Value(value = value,
+                edIzm = EdIzm.getEdIzm(spinnerDisplacementM.selectedItem as String),
+                parameter = Parameter.D_mm)
+
+        vibroCalcByDisplacement.setParameters(getSelectedParameters())
+        val result = vibroCalcByDisplacement.calculate(displacement, getFreq())
+
+        applyResult(result, displacement)
+
+        lastView = view
+        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_MILS
+    }
+
 }

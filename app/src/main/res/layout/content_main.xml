@@ -209,7 +209,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="50"
                             android:entries="@array/edIzmList"
-                            android:layout_height="wrap_content" android:id="@+id/spinnerG"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinnerAccelerationG"
                     />
 
                 </LinearLayout>
@@ -250,7 +251,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="50"
                             android:entries="@array/edIzmList"
-                            android:layout_height="wrap_content" android:id="@+id/spinnerAccelerationM"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinnerAccelerationM"
                     />
 
                 </LinearLayout>
@@ -332,7 +334,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="50"
                             android:entries="@array/edIzmList"
-                            android:layout_height="wrap_content" android:id="@+id/spinnerVelocityM"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinnerVelocityM"
                     />
                 </LinearLayout>
             </LinearLayout>
