@@ -709,7 +709,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     //  --------
     fun onChangeAccelerationGEdIzm() {
-        val text = editDisplacementMm.text.toString()
+        val text = editAccelerationG.text.toString()
 
         val edIzm = EdIzm.getEdIzm(spinnerAccelerationG.selectedItem as String)
 
@@ -723,7 +723,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun onChangeAccelerationMsec2EdIzm() {
-        val text = editDisplacementMm.text.toString()
+        val text = editAccelerationM.text.toString()
 
         val edIzm = EdIzm.getEdIzm(spinnerAccelerationM.selectedItem as String)
 
@@ -737,7 +737,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun onChangeAccelerationMmSec2EdIzm() {
-        val text = editDisplacementMm.text.toString()
+        val text = editAccelerationMm.text.toString()
 
         val edIzm = EdIzm.getEdIzm(spinnerAccelerationMm.selectedItem as String)
 
@@ -751,7 +751,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun onChangeVelocityMsecEdIzm() {
-        val text = editDisplacementMm.text.toString()
+        val text = editVelocityM.text.toString()
 
         val edIzm = EdIzm.getEdIzm(spinnerVelocityM.selectedItem as String)
 
@@ -760,12 +760,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 edIzm = velocityMsecSelectEdIzmLastValue,
                 parameter = Parameter.V_m_sec)
 
-        editVelocityMm.setText(vibroCalcByVelocity.recalculateValue(velocity, edIzm))
+        editVelocityM.setText(vibroCalcByVelocity.recalculateValue(velocity, edIzm))
         velocityMsecSelectEdIzmLastValue = edIzm
     }
 
     fun onChangeVelocityMmSecEdIzm() {
-        val text = editDisplacementMm.text.toString()
+        val text = editVelocityMm.text.toString()
 
         val edIzm = EdIzm.getEdIzm(spinnerVelocityMm.selectedItem as String)
 
