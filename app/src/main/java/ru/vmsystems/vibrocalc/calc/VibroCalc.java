@@ -89,6 +89,7 @@ public abstract class VibroCalc {
 
         switch (value.getEdIzm()) {
             case RMS:
+            case NONE:
                 rms = value.getValue();
                 break;
             case PEAK:
