@@ -34,4 +34,27 @@
         <item>Пик</item>
         <item>Размах</item>
     </string-array>
+
+
+    <string name="action_settings_ru">Settings</string>
+    <string name="freqHz_ru">Частота, Гц</string>
+    <string name="freqCpm_ru">Частота, об/мин</string>
+
+    <string name="aDb_ru">AdB re 1 micro g</string>
+    <string name="vDbMmSec_ru">VdB re 1x10e-6 мм/сек</string>
+    <string name="vDbMSec_ru">VdB re 1x10e-8 м/с</string>
+
+    <string name="AccelerationG_ru">Виброускорение, g</string>
+    <string name="AccelerationMSec2_ru">Виброускорение, м/с2</string>
+    <string name="AccelerationMmSec2_ru">Виброускорение, мм/с2</string>
+
+    <string name="velocityMSec_ru">Виброскорость, м/с</string>
+    <string name="velocityMmSec_ru">Виброскорость, мм/с</string>
+
+    <string name="displacementM_ru">Виброперемещение, м</string>
+    <string name="displacementMm_ru">Виброперемещение, мм</string>
+
+    <string name="temperatureC_ru">Температура, C</string>
+    <string name="temperatureF_ru">Температура, F</string>
+
 </resources>

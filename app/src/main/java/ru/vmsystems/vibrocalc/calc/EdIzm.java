@@ -1,14 +1,12 @@
 package ru.vmsystems.vibrocalc.calc;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public enum EdIzm {
-    RMS(1, "rms", "СКЗ"),
-    PEAK(3, "pk", "Пик"),
-    PEAK_TO_PEAK(4, "pk-pk", "Размах"),
+    RMS(1, "Rms", "СКЗ"),
+    PEAK(3, "Pk", "Пик"),
+    PEAK_TO_PEAK(4, "Pk-pk", "Размах"),
     NONE(5, "no", "нет");
 
     private Integer position;
@@ -35,24 +33,6 @@ public enum EdIzm {
         }
 
         throw new RuntimeException("Нет такой единицы измерения: " + str);
-    }
-
-    public static Map<Integer, String> getEnglish() {
-        Map<Integer, String> map = new HashMap<>();
-        for (EdIzm edIzm : EdIzm.values()) {
-            if (edIzm == NONE) continue;
-            map.put(edIzm.position, edIzm.english);
-        }
-        return map;
-    }
-
-    public static Map<Integer, String> getMetric() {
-        Map<Integer, String> map = new HashMap<>();
-        for (EdIzm edIzm : EdIzm.values()) {
-            if (edIzm == NONE) continue;
-            map.put(edIzm.position, edIzm.metric);
-        }
-        return map;
     }
 
     public static List<String> getEnglishList() {

@@ -313,35 +313,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-        val res = resources
-        val dm = res.displayMetrics
-        val conf = res.configuration
-
         getSelectedEdIzm()
 
         if (isChecked) {
-            conf.locale = Locale("en")
             setEnglish()
         } else {
-            conf.locale = Locale("ru")
             setMetric()
         }
-        res.updateConfiguration(conf, dm)
-
-        textFreqHz.text = getString(R.string.freqHz)
-        textFreqCpm.text = getString(R.string.freqCpm)
-        textAdb.text = getString(R.string.aDb)
-        textVdbMm.text = getString(R.string.vDbMmSec)
-        textVdbM.text = getString(R.string.vDbMSec)
-        textAccelerationG.text = getString(R.string.AccelerationG)
-        textAccelerationM.text = getString(R.string.AccelerationMSec2)
-        textAccelerationMm.text = getString(R.string.AccelerationMmSec2)
-        textVelocityM.text = getString(R.string.velocityMSec)
-        textVelocityMm.text = getString(R.string.velocityMmSec)
-        textDisplacementM.text = getString(R.string.displacementM)
-        textDisplacementMm.text = getString(R.string.displacementMm)
-        textTemperatureC.text = getString(R.string.temperatureC)
-        textTemperatureF.text = getString(R.string.temperatureF)
 
         setSelectedEdIzm()
 
@@ -388,6 +366,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         vibroCalcByDisplacement.setMeasures(Measures.ENGLISH)
 
         setEdIzm(english)
+
+        textFreqHz.text = getString(R.string.freqHz)
+        textFreqCpm.text = getString(R.string.freqCpm)
+        textAdb.text = getString(R.string.aDb)
+        textVdbMm.text = getString(R.string.vDbMmSec)
+        textVdbM.text = getString(R.string.vDbMSec)
+        textAccelerationG.text = getString(R.string.AccelerationG)
+        textAccelerationM.text = getString(R.string.AccelerationMSec2)
+        textAccelerationMm.text = getString(R.string.AccelerationMmSec2)
+        textVelocityM.text = getString(R.string.velocityMSec)
+        textVelocityMm.text = getString(R.string.velocityMmSec)
+        textDisplacementM.text = getString(R.string.displacementM)
+        textDisplacementMm.text = getString(R.string.displacementMm)
+        textTemperatureC.text = getString(R.string.temperatureC)
+        textTemperatureF.text = getString(R.string.temperatureF)
     }
 
     private fun setMetric() {
@@ -402,6 +395,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         vibroCalcByDisplacement.setMeasures(Measures.METRIC)
 
         setEdIzm(metric)
+
+        textFreqHz.text = getString(R.string.freqHz_ru)
+        textFreqCpm.text = getString(R.string.freqCpm_ru)
+        textAdb.text = getString(R.string.aDb_ru)
+        textVdbMm.text = getString(R.string.vDbMmSec_ru)
+        textVdbM.text = getString(R.string.vDbMSec_ru)
+        textAccelerationG.text = getString(R.string.AccelerationG_ru)
+        textAccelerationM.text = getString(R.string.AccelerationMSec2_ru)
+        textAccelerationMm.text = getString(R.string.AccelerationMmSec2_ru)
+        textVelocityM.text = getString(R.string.velocityMSec_ru)
+        textVelocityMm.text = getString(R.string.velocityMmSec_ru)
+        textDisplacementM.text = getString(R.string.displacementM_ru)
+        textDisplacementMm.text = getString(R.string.displacementMm_ru)
+        textTemperatureC.text = getString(R.string.temperatureC_ru)
+        textTemperatureF.text = getString(R.string.temperatureF_ru)
     }
 
     private fun setEdIzm(values: ArrayAdapter<String>?) {
