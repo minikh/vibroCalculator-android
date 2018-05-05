@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         spinnerDisplacementM.setSelection(2)
         spinnerDisplacementMm.setSelection(2)
 
-        editTemperatureC.setOnEditorActionListener { view, actionId, event ->
+        editTemperatureC.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditTemperatureC(view)
                 editTemperatureC.selectAll()
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editTemperatureF.setOnEditorActionListener { view, actionId, event ->
+        editTemperatureF.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditTemperatureF(view)
                 editTemperatureF.selectAll()
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editFreqCpm.setOnEditorActionListener { view, actionId, event ->
+        editFreqCpm.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditFreqCpm(view)
                 editFreqCpm.selectAll()
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editFreqHz.setOnEditorActionListener { view, actionId, event ->
+        editFreqHz.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditFreqHz(view)
                 editFreqHz.selectAll()
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editAdb.setOnEditorActionListener { view, actionId, event ->
+        editAdb.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditAdb(view)
                 editAdb.selectAll()
@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editVdbM.setOnEditorActionListener { view, actionId, event ->
+        editVdbM.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditVdbMsec(view)
                 editVdbM.selectAll()
@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editVdbMm.setOnEditorActionListener { view, actionId, event ->
+        editVdbMm.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditVdbMmSec(view)
                 editVdbMm.selectAll()
@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editAccelerationG.setOnEditorActionListener { view, actionId, event ->
+        editAccelerationG.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditAccelerationG(view)
                 editAccelerationG.selectAll()
@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editAccelerationM.setOnEditorActionListener { view, actionId, event ->
+        editAccelerationM.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditAccelerationMsec2(view)
                 editAccelerationM.selectAll()
@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editAccelerationMm.setOnEditorActionListener { view, actionId, event ->
+        editAccelerationMm.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditAccelerationMmSec2(view)
                 editAccelerationMm.selectAll()
@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editVelocityM.setOnEditorActionListener { view, actionId, event ->
+        editVelocityM.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditVelocityMsec(view)
                 editVelocityM.selectAll()
@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editVelocityMm.setOnEditorActionListener { view, actionId, event ->
+        editVelocityMm.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditVelocityMmSec(view)
                 editVelocityMm.selectAll()
@@ -188,7 +188,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editDisplacementM.setOnEditorActionListener { view, actionId, event ->
+        editDisplacementM.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditDisplacementM(view)
                 editDisplacementM.selectAll()
@@ -197,7 +197,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 false
             }
         }
-        editDisplacementMm.setOnEditorActionListener { view, actionId, event ->
+        editDisplacementMm.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
                 onEditDisplacementMm(view)
                 editDisplacementMm.selectAll()
@@ -258,6 +258,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
+        onCheckedChanged(null, false)
     }
 
     override fun onBackPressed() {
