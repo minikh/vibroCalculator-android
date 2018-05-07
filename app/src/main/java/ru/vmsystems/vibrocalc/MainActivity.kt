@@ -101,64 +101,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         editDisplacementMm.editTextSetActionListener { view -> onEditDisplacementMm(view) }
 
 
-        spinnerAccelerationG.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                onChangeAccelerationGEdIzm()
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-            }
-        }
-        spinnerAccelerationM.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                onChangeAccelerationMsec2EdIzm()
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-            }
-        }
-        spinnerAccelerationMm.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                onChangeAccelerationMmSec2EdIzm()
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-            }
-        }
-        spinnerVelocityM.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                onChangeVelocityMsecEdIzm()
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-            }
-        }
-        spinnerVelocityMm.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                onChangeVelocityMmSecEdIzm()
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-            }
-        }
-        spinnerDisplacementM.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                onChangeDisplacementMEdIzm()
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-            }
-        }
-        spinnerDisplacementMm.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                onChangeDisplacementMmEdIzm()
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-            }
-        }
+        spinnerAccelerationG.onItemSelectedListener = ItemSelectedListener { onChangeAccelerationGEdIzm() }
+        spinnerAccelerationM.onItemSelectedListener = ItemSelectedListener { onChangeAccelerationMsec2EdIzm() }
+        spinnerAccelerationMm.onItemSelectedListener = ItemSelectedListener { onChangeAccelerationMmSec2EdIzm() }
+        spinnerVelocityM.onItemSelectedListener = ItemSelectedListener { onChangeVelocityMsecEdIzm() }
+        spinnerVelocityMm.onItemSelectedListener = ItemSelectedListener { onChangeVelocityMmSecEdIzm() }
+        spinnerDisplacementM.onItemSelectedListener = ItemSelectedListener { onChangeDisplacementMEdIzm() }
+        spinnerDisplacementMm.onItemSelectedListener = ItemSelectedListener { onChangeDisplacementMmEdIzm() }
 
         onCheckedChanged(null, false)
+    }
+
+    class ItemSelectedListener(val function: () -> Unit) : OnItemSelectedListener {
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            function()
+        }
+
+        override fun onNothingSelected(parent: AdapterView<*>?) {
+        }
     }
 
     private fun EditText.editTextSetActionListener(function: (EditText) -> Unit) {
