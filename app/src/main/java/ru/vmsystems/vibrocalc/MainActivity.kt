@@ -59,9 +59,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                    .setAction("AppAlert", null).show()
 //        }
 
-        fab.setOnClickListener {
-            reset()
-        }
+        fab.setOnClickListener { reset() }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -195,9 +193,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setSelectedEdIzm()
 
-        if (lastView != null) {
-            lastView!!.onEditorAction(IME_ACTION_DONE)
-        }
+        lastView?.onEditorAction(IME_ACTION_DONE)
     }
 
     private fun reset() {
@@ -226,11 +222,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setEnglish() {
-        if (lastView != null) {
-            var value: Double = java.lang.Double.valueOf(lastView!!.text.toString())
-            value *= fromMetricKoeff
-            lastView!!.text = value.toString()
-
+        lastView?.let {
+            val value: Double = it.text.toString().toDouble() * fromMetricKoeff
+            it.text = getString(R.string.presigion).format(value)
         }
 
         vibroCalcByAcceleration.setMeasures(Measures.ENGLISH)
@@ -256,10 +250,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setMetric() {
-        if (lastView != null) {
-            var value: Double = java.lang.Double.valueOf(lastView!!.text.toString())
-            value /= fromMetricKoeff
-            lastView!!.text = value.toString()
+        lastView?.let {
+            val value: Double = it.text.toString().toDouble() / fromMetricKoeff
+            it.text = getString(R.string.presigion).format(value)
         }
 
         vibroCalcByAcceleration.setMeasures(Measures.METRIC)
@@ -354,70 +347,80 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun applyResult(result: Result, value: Value) {
         if (value.parameter !== Parameter.A_db) {
-            editAdb.setText(result.values[Parameter.A_db.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.A_db.name]!!.value)
+            editAdb.setText(text)
         }
 
         if (value.parameter !== Parameter.V_db_mm_sec) {
-            editVdbMm.setText(result.values[Parameter.V_db_mm_sec.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.V_db_mm_sec.name]!!.value)
+            editVdbMm.setText(text)
         }
 
         if (value.parameter !== Parameter.V_db_m_sec) {
-            editVdbM.setText(result.values[Parameter.V_db_m_sec.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.V_db_m_sec.name]!!.value)
+            editVdbM.setText(text)
         }
 
         if (value.parameter !== Parameter.A_g) {
-            editAccelerationG.setText(result.values[Parameter.A_g.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.A_g.name]!!.value)
+            editAccelerationG.setText(text)
         }
 
         if (value.parameter !== Parameter.A_m_sec2) {
-            editAccelerationM.setText(result.values[Parameter.A_m_sec2.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.A_m_sec2.name]!!.value)
+            editAccelerationM.setText(text)
         }
 
         if (value.parameter !== Parameter.A_mm_sec2) {
-            editAccelerationMm.setText(result.values[Parameter.A_mm_sec2.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.A_mm_sec2.name]!!.value)
+            editAccelerationMm.setText(text)
         }
 
         if (value.parameter !== Parameter.V_m_sec) {
-            editVelocityM.setText(result.values[Parameter.V_m_sec.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.V_m_sec.name]!!.value)
+            editVelocityM.setText(text)
         }
 
         if (value.parameter !== Parameter.V_mm_sec) {
-            editVelocityMm.setText(result.values[Parameter.V_mm_sec.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.V_mm_sec.name]!!.value)
+            editVelocityMm.setText(text)
         }
 
         if (value.parameter !== Parameter.D_m) {
-            editDisplacementM.setText(result.values[Parameter.D_m.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.D_m.name]!!.value)
+            editDisplacementM.setText(text)
         }
 
         if (value.parameter !== Parameter.D_mm) {
-            editDisplacementMm.setText(result.values[Parameter.D_mm.name]!!.value.toString())
+            val text = getString(R.string.presigion).format(result.values[Parameter.D_mm.name]!!.value)
+            editDisplacementMm.setText(text)
         }
     }
 
     private fun onEditTemperatureC(view: TextView) {
-        val temp = java.lang.Double.parseDouble(view.text.toString())
+        val temp = view.text.toString().toDouble()
 
         if (temp < -273.15 || temp > 10000) {
             AppAlert.showErrorAlert("Введите число от -273.15 до 10 000", view)
             return
         }
 
-        editTemperatureF.setText((1.8 * temp + 32).toString())
+        editTemperatureF.setText(getString(R.string.presigion).format(1.8 * temp + 32))
     }
 
     private fun onEditTemperatureF(view: TextView) {
-        val temp = java.lang.Double.parseDouble(view.text.toString())
+        val temp = view.text.toString().toDouble()
 
         if (temp < -459.67 || temp > 10000) {
             AppAlert.showErrorAlert("Введите число от -459.67 до 10 000", view)
             return
         }
 
-        editTemperatureC.setText(((temp - 32) / 1.8).toString())
+        editTemperatureC.setText(getString(R.string.presigion).format((temp - 32) / 1.8))
     }
 
     private fun onEditFreqHz(view: TextView) {
-        val freq = java.lang.Double.parseDouble(view.text.toString())
+        val freq = view.text.toString().toDouble()
 
         if (freq > 100000) {
             AppAlert.showErrorAlert("Введите число от 0 до 100 000", view)
@@ -429,7 +432,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onEditFreqCpm(view: TextView) {
-        val freq = java.lang.Double.parseDouble(view.text.toString())
+        val freq = view.text.toString().toDouble()
 
         if (freq > 6000000) {
             AppAlert.showErrorAlert("Введите число от 0 до 6 000 000", view)
@@ -441,7 +444,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onEditAdb(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val acceleration = Value(value = value, edIzm = EdIzm.NONE, parameter = Parameter.A_db)
 
         vibroCalcByAcceleration.setParameters(getSelectedParameters())
@@ -454,7 +457,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onEditVdbMmSec(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val velocity = Value(value = value, edIzm = EdIzm.NONE, parameter = Parameter.V_db_mm_sec)
 
         vibroCalcByVelocity.setParameters(getSelectedParameters())
@@ -467,7 +470,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onEditVdbMsec(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val velocity = Value(value = value, edIzm = EdIzm.NONE, parameter = Parameter.V_db_m_sec)
 
         vibroCalcByVelocity.setParameters(getSelectedParameters())
@@ -482,7 +485,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun onEditAccelerationG(view: TextView) {
         if (checkFreqByZero()) return
 
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val acceleration = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerAccelerationG.selectedItem as String),
                 parameter = Parameter.A_g)
@@ -497,7 +500,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onEditAccelerationMsec2(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val acceleration = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerAccelerationM.selectedItem as String),
                 parameter = Parameter.A_m_sec2)
@@ -512,7 +515,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onEditAccelerationMmSec2(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val acceleration = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerAccelerationMm.selectedItem as String),
                 parameter = Parameter.A_mm_sec2)
@@ -527,7 +530,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onEditVelocityMsec(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val velocity = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerVelocityM.selectedItem as String),
                 parameter = Parameter.V_m_sec)
@@ -542,7 +545,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onEditVelocityMmSec(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val velocity = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerVelocityMm.selectedItem as String),
                 parameter = Parameter.V_mm_sec)
@@ -557,7 +560,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onEditDisplacementM(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val displacement = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerDisplacementM.selectedItem as String),
                 parameter = Parameter.D_m)
@@ -573,7 +576,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     private fun onEditDisplacementMm(view: TextView) {
-        val value = java.lang.Double.parseDouble(view.text.toString())
+        val value = view.text.toString().toDouble()
         val displacement = Value(value = value,
                 edIzm = EdIzm.getEdIzm(spinnerDisplacementMm.selectedItem as String),
                 parameter = Parameter.D_mm)
@@ -589,7 +592,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     //  --------
-    fun onChangeAccelerationGEdIzm() {
+    private fun onChangeAccelerationGEdIzm() {
         val text = editAccelerationG.text.toString()
 
         val edIzm = EdIzm.getEdIzm(spinnerAccelerationG.selectedItem as String)
