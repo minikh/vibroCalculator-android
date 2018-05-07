@@ -80,25 +80,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         spinnerDisplacementM.setSelection(2)
         spinnerDisplacementMm.setSelection(2)
 
-        editTextSetActionListener(editTemperatureC) { this.onEditTemperatureC(editTemperatureC) }
-        editTextSetActionListener(editTemperatureF) { this.onEditTemperatureF(editTemperatureF) }
+        editTemperatureC.editTextSetActionListener { view -> onEditTemperatureC(view) }
+        editTemperatureF.editTextSetActionListener { view -> onEditTemperatureF(view) }
 
-        editTextSetActionListener(editFreqCpm) { this.onEditFreqCpm(editFreqCpm) }
-        editTextSetActionListener(editFreqHz) { this.onEditFreqHz(editFreqHz) }
+        editFreqCpm.editTextSetActionListener { view -> onEditFreqCpm(view) }
+        editFreqHz.editTextSetActionListener { view -> onEditFreqHz(view) }
 
-        editTextSetActionListener(editAdb) { this.onEditAdb(editAdb) }
-        editTextSetActionListener(editVdbM) { this.onEditVdbMsec(editVdbM) }
-        editTextSetActionListener(editVdbMm) { this.onEditVdbMmSec(editVdbMm) }
+        editAdb.editTextSetActionListener { view -> onEditAdb(view) }
+        editVdbM.editTextSetActionListener { view -> onEditVdbMsec(view) }
+        editVdbMm.editTextSetActionListener { view -> onEditVdbMmSec(view) }
 
-        editTextSetActionListener(editAccelerationG) { this.onEditAccelerationG(editAccelerationG) }
-        editTextSetActionListener(editAccelerationM) { this.onEditAccelerationMsec2(editAccelerationM) }
-        editTextSetActionListener(editAccelerationMm) { this.onEditAccelerationMmSec2(editAccelerationMm) }
+        editAccelerationG.editTextSetActionListener { view -> onEditAccelerationG(view) }
+        editAccelerationM.editTextSetActionListener { view -> onEditAccelerationMsec2(view) }
+        editAccelerationMm.editTextSetActionListener { view -> onEditAccelerationMmSec2(view) }
 
-        editTextSetActionListener(editVelocityM) { this.onEditVelocityMsec(editVelocityM) }
-        editTextSetActionListener(editVelocityMm) { this.onEditVelocityMmSec(editVelocityMm) }
+        editVelocityM.editTextSetActionListener { view -> onEditVelocityMsec(view) }
+        editVelocityMm.editTextSetActionListener { view -> onEditVelocityMmSec(view) }
 
-        editTextSetActionListener(editDisplacementM) { this.onEditDisplacementM(editDisplacementM) }
-        editTextSetActionListener(editDisplacementMm) { this.onEditDisplacementMm(editDisplacementMm) }
+        editDisplacementM.editTextSetActionListener { view -> onEditDisplacementM(view) }
+        editDisplacementMm.editTextSetActionListener { view -> onEditDisplacementMm(view) }
 
 
         spinnerAccelerationG.onItemSelectedListener = object : OnItemSelectedListener {
@@ -161,11 +161,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         onCheckedChanged(null, false)
     }
 
-    private fun editTextSetActionListener(view: EditText, function: () -> Unit) {
-        view.setOnEditorActionListener { _, actionId, _ ->
+    private fun EditText.editTextSetActionListener(function: (EditText) -> Unit) {
+        this.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                function()
-                view.selectAll()
+                function(this)
+                this.selectAll()
                 true
             } else {
                 false
