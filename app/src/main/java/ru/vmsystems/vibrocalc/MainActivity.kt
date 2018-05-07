@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var english: ArrayAdapter<String>? = null
     private var metric: ArrayAdapter<String>? = null
 
-    private var lastView : TextView? = null
+    private var lastView: TextView? = null
     private var fromMetricKoeff: Double = 1.0
 
     private var accelerationGSelectEdIzmLastValue: EdIzm? = null
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
 //        fab.setOnClickListener { view ->
-            //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("AppAlert", null).show()
 //        }
 
@@ -80,138 +80,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         spinnerDisplacementM.setSelection(2)
         spinnerDisplacementMm.setSelection(2)
 
-        editTemperatureC.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditTemperatureC(view)
-                editTemperatureC.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editTemperatureF.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditTemperatureF(view)
-                editTemperatureF.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editFreqCpm.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditFreqCpm(view)
-                editFreqCpm.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editFreqHz.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditFreqHz(view)
-                editFreqHz.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editAdb.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditAdb(view)
-                editAdb.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editVdbM.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditVdbMsec(view)
-                editVdbM.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editVdbMm.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditVdbMmSec(view)
-                editVdbMm.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editAccelerationG.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditAccelerationG(view)
-                editAccelerationG.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editAccelerationM.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditAccelerationMsec2(view)
-                editAccelerationM.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editAccelerationMm.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditAccelerationMmSec2(view)
-                editAccelerationMm.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editVelocityM.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditVelocityMsec(view)
-                editVelocityM.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editVelocityMm.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditVelocityMmSec(view)
-                editVelocityMm.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editDisplacementM.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditDisplacementM(view)
-                editDisplacementM.selectAll()
-                true
-            } else {
-                false
-            }
-        }
-        editDisplacementMm.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
-                onEditDisplacementMm(view)
-                editDisplacementMm.selectAll()
-                true
-            } else {
-                false
-            }
-        }
+        editTextSetActionListener(editTemperatureC) { this.onEditTemperatureC(editTemperatureC) }
+        editTextSetActionListener(editTemperatureF) { this.onEditTemperatureF(editTemperatureF) }
+
+        editTextSetActionListener(editFreqCpm) { this.onEditFreqCpm(editFreqCpm) }
+        editTextSetActionListener(editFreqHz) { this.onEditFreqHz(editFreqHz) }
+
+        editTextSetActionListener(editAdb) { this.onEditAdb(editAdb) }
+        editTextSetActionListener(editVdbM) { this.onEditVdbMsec(editVdbM) }
+        editTextSetActionListener(editVdbMm) { this.onEditVdbMmSec(editVdbMm) }
+
+        editTextSetActionListener(editAccelerationG) { this.onEditAccelerationG(editAccelerationG) }
+        editTextSetActionListener(editAccelerationM) { this.onEditAccelerationMsec2(editAccelerationM) }
+        editTextSetActionListener(editAccelerationMm) { this.onEditAccelerationMmSec2(editAccelerationMm) }
+
+        editTextSetActionListener(editVelocityM) { this.onEditVelocityMsec(editVelocityM) }
+        editTextSetActionListener(editVelocityMm) { this.onEditVelocityMmSec(editVelocityMm) }
+
+        editTextSetActionListener(editDisplacementM) { this.onEditDisplacementM(editDisplacementM) }
+        editTextSetActionListener(editDisplacementMm) { this.onEditDisplacementMm(editDisplacementMm) }
 
 
         spinnerAccelerationG.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
                 onChangeAccelerationGEdIzm()
             }
+
             override fun onNothingSelected(parentView: AdapterView<*>) {
             }
         }
@@ -219,6 +113,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
                 onChangeAccelerationMsec2EdIzm()
             }
+
             override fun onNothingSelected(parentView: AdapterView<*>) {
             }
         }
@@ -226,6 +121,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
                 onChangeAccelerationMmSec2EdIzm()
             }
+
             override fun onNothingSelected(parentView: AdapterView<*>) {
             }
         }
@@ -233,6 +129,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
                 onChangeVelocityMsecEdIzm()
             }
+
             override fun onNothingSelected(parentView: AdapterView<*>) {
             }
         }
@@ -240,6 +137,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
                 onChangeVelocityMmSecEdIzm()
             }
+
             override fun onNothingSelected(parentView: AdapterView<*>) {
             }
         }
@@ -247,6 +145,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
                 onChangeDisplacementMEdIzm()
             }
+
             override fun onNothingSelected(parentView: AdapterView<*>) {
             }
         }
@@ -254,11 +153,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
                 onChangeDisplacementMmEdIzm()
             }
+
             override fun onNothingSelected(parentView: AdapterView<*>) {
             }
         }
 
         onCheckedChanged(null, false)
+    }
+
+    private fun editTextSetActionListener(view: EditText, function: () -> Unit) {
+        view.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == IME_ACTION_DONE || actionId == IME_ACTION_NEXT) {
+                function()
+                view.selectAll()
+                true
+            } else {
+                false
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -323,7 +235,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setSelectedEdIzm()
 
-        if (lastView != null){
+        if (lastView != null) {
             lastView!!.onEditorAction(IME_ACTION_DONE)
         }
     }
@@ -541,7 +453,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             return
         }
 
-        editTemperatureC.setText((1.8 * temp + 32).toString())
+        editTemperatureC.setText(((temp - 32) / 1.8).toString())
     }
 
     private fun onEditFreqHz(view: TextView) {
