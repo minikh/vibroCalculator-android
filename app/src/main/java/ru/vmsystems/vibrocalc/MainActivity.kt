@@ -225,6 +225,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         lastView?.let {
             val value: Double = it.text.toString().toDouble() * fromMetricKoeff
             it.text = getString(R.string.presigion).format(value)
+                    .replace(",", ".")
         }
 
         vibroCalcByAcceleration.setMeasures(Measures.ENGLISH)
@@ -253,6 +254,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         lastView?.let {
             val value: Double = it.text.toString().toDouble() / fromMetricKoeff
             it.text = getString(R.string.presigion).format(value)
+                    .replace(",", ".")
         }
 
         vibroCalcByAcceleration.setMeasures(Measures.METRIC)
@@ -348,51 +350,61 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun applyResult(result: Result, value: Value) {
         if (value.parameter !== Parameter.A_db) {
             val text = getString(R.string.presigion).format(result.values[Parameter.A_db.name]!!.value)
+                    .replace(",", ".")
             editAdb.setText(text)
         }
 
         if (value.parameter !== Parameter.V_db_mm_sec) {
             val text = getString(R.string.presigion).format(result.values[Parameter.V_db_mm_sec.name]!!.value)
+                    .replace(",", ".")
             editVdbMm.setText(text)
         }
 
         if (value.parameter !== Parameter.V_db_m_sec) {
             val text = getString(R.string.presigion).format(result.values[Parameter.V_db_m_sec.name]!!.value)
+                    .replace(",", ".")
             editVdbM.setText(text)
         }
 
         if (value.parameter !== Parameter.A_g) {
             val text = getString(R.string.presigion).format(result.values[Parameter.A_g.name]!!.value)
+                    .replace(",", ".")
             editAccelerationG.setText(text)
         }
 
         if (value.parameter !== Parameter.A_m_sec2) {
             val text = getString(R.string.presigion).format(result.values[Parameter.A_m_sec2.name]!!.value)
+                    .replace(",", ".")
             editAccelerationM.setText(text)
         }
 
         if (value.parameter !== Parameter.A_mm_sec2) {
             val text = getString(R.string.presigion).format(result.values[Parameter.A_mm_sec2.name]!!.value)
+                    .replace(",", ".")
             editAccelerationMm.setText(text)
         }
 
         if (value.parameter !== Parameter.V_m_sec) {
             val text = getString(R.string.presigion).format(result.values[Parameter.V_m_sec.name]!!.value)
+                    .replace(",", ".")
             editVelocityM.setText(text)
         }
 
         if (value.parameter !== Parameter.V_mm_sec) {
             val text = getString(R.string.presigion).format(result.values[Parameter.V_mm_sec.name]!!.value)
+                    .replace(",", ".")
             editVelocityMm.setText(text)
         }
 
         if (value.parameter !== Parameter.D_m) {
             val text = getString(R.string.presigion).format(result.values[Parameter.D_m.name]!!.value)
+                    .replace(",", ".")
             editDisplacementM.setText(text)
         }
 
         if (value.parameter !== Parameter.D_mm) {
             val text = getString(R.string.presigion).format(result.values[Parameter.D_mm.name]!!.value)
+                    .replace(",", ".")
             editDisplacementMm.setText(text)
         }
     }
