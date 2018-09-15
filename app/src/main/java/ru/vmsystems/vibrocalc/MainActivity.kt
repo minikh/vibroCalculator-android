@@ -348,63 +348,54 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun applyResult(result: Result, value: Value) {
+        val presigion = getString(R.string.presigion)
         if (value.parameter !== Parameter.A_db) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.A_db.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.A_db)).replace(",", ".")
             editAdb.setText(text)
         }
 
         if (value.parameter !== Parameter.V_db_mm_sec) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.V_db_mm_sec.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.V_db_mm_sec)).replace(",", ".")
             editVdbMm.setText(text)
         }
 
         if (value.parameter !== Parameter.V_db_m_sec) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.V_db_m_sec.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.V_db_m_sec)).replace(",", ".")
             editVdbM.setText(text)
         }
 
         if (value.parameter !== Parameter.A_g) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.A_g.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.A_g)).replace(",", ".")
             editAccelerationG.setText(text)
         }
 
         if (value.parameter !== Parameter.A_m_sec2) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.A_m_sec2.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.A_m_sec2)).replace(",", ".")
             editAccelerationM.setText(text)
         }
 
         if (value.parameter !== Parameter.A_mm_sec2) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.A_mm_sec2.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.A_mm_sec2)).replace(",", ".")
             editAccelerationMm.setText(text)
         }
 
         if (value.parameter !== Parameter.V_m_sec) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.V_m_sec.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.V_m_sec)).replace(",", ".")
             editVelocityM.setText(text)
         }
 
         if (value.parameter !== Parameter.V_mm_sec) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.V_mm_sec.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.V_mm_sec)).replace(",", ".")
             editVelocityMm.setText(text)
         }
 
         if (value.parameter !== Parameter.D_m) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.D_m.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.D_m)).replace(",", ".")
             editDisplacementM.setText(text)
         }
 
         if (value.parameter !== Parameter.D_mm) {
-            val text = getString(R.string.presigion).format(result.values[Parameter.D_mm.name]!!.value)
-                    .replace(",", ".")
+            val text = presigion.format(result.getValue(Parameter.D_mm)).replace(",", ".")
             editDisplacementMm.setText(text)
         }
     }
